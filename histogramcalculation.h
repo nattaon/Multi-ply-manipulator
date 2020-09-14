@@ -35,6 +35,7 @@ class HistogramCalculation
 public:
     HistogramCalculation();
     void CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud);
+    void SaveHistogramImage(std::string filename);
 
 private:
     cv::Mat shownimage;

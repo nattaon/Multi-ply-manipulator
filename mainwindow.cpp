@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "build/ui_mainwindow.h"
 
-#include "JetColormap.cpp"
+#include "Colormap.cpp"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -14,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Show list of ply files
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
-    currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
+    //currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
+    currentPlyDir = QString("../ply").arg(QDir::separator());
     ui->line_plyfoldername->setText(currentPlyDir);
     ListPlyInFolder();
     currentSelectingPlyIndex=-1;
@@ -268,11 +269,12 @@ void MainWindow::on_bt_savehistimg_clicked()
     QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
     //ui->prefiximg_lineEdit->text();
     QString filename = ui->line_prefiximg->text() + item->text(0).section('.',0,0) + ".jpg";
-    std::cout << "histogram img filename " << filename.toStdString() << std::endl;
+    QString filepath = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename;
+    std::cout << "histogram img filename " << filepath.toStdString() << std::endl;
+
+    histcalc->SaveHistogramImage(filepath.toStdString());
 
 
-    cv::imwrite( filename.toStdString(), shown_hist_image );
-    cv::destroyWindow("Histogram image");
 }
 
 

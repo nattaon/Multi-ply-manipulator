@@ -49,5 +49,5 @@
 -DDISABLE_RSSDK
 -Dqh_QHpointer
 -o
-/home/nattaon/qt_project/Multi-ply-manipulator/build/moc_cameraviewtransform.cpp
-/home/nattaon/qt_project/Multi-ply-manipulator/cameraviewtransform.h
+/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/moc_cameraviewtransform.cpp
+/home/okuboali/nattaon_ws2/Multi-ply-manipulator/cameraviewtransform.h

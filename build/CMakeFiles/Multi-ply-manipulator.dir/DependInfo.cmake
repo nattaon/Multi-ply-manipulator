@@ -4,16 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nattaon/qt_project/Multi-ply-manipulator/JetColormap.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/JetColormap.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/cameraviewtransform.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/cameraviewtransform.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/histogramcalculation.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/histogramcalculation.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/main.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/mainwindow.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/build/moc_cameraviewtransform.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_cameraviewtransform.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/build/moc_histogramcalculation.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_histogramcalculation.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/build/moc_mainwindow.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/build/moc_pointcloudtransform.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_pointcloudtransform.cpp.o"
-  "/home/nattaon/qt_project/Multi-ply-manipulator/pointcloudtransform.cpp" "/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/Colormap.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/Colormap.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/cameraviewtransform.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/cameraviewtransform.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/histogramcalculation.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/histogramcalculation.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/main.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/mainwindow.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/moc_cameraviewtransform.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_cameraviewtransform.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/moc_histogramcalculation.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_histogramcalculation.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/moc_mainwindow.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/moc_pointcloudtransform.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/moc_pointcloudtransform.cpp.o"
+  "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/pointcloudtransform.cpp" "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -68,8 +68,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/x86_64-linux-gnu/qt5/QtGui"
   "/usr/include/x86_64-linux-gnu/qt5/QtCore"
   "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
-  "/usr/local/include"
-  "/usr/local/include/opencv"
+  "/usr/include/opencv"
   )
 
 # Targets to which this target links.

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nattaon/qt_project/Multi-ply-manipulator
+CMAKE_SOURCE_DIR = /home/okuboali/nattaon_ws2/Multi-ply-manipulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nattaon/qt_project/Multi-ply-manipulator/build
+CMAKE_BINARY_DIR = /home/okuboali/nattaon_ws2/Multi-ply-manipulator/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles /home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles /home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,32 @@ Multi-ply-manipulator/fast:
 	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/build
 .PHONY : Multi-ply-manipulator/fast
 
-JetColormap.o: JetColormap.cpp.o
+Colormap.o: Colormap.cpp.o
 
-.PHONY : JetColormap.o
+.PHONY : Colormap.o
 
 # target to build an object file
-JetColormap.cpp.o:
-	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/JetColormap.cpp.o
-.PHONY : JetColormap.cpp.o
+Colormap.cpp.o:
+	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/Colormap.cpp.o
+.PHONY : Colormap.cpp.o
 
-JetColormap.i: JetColormap.cpp.i
+Colormap.i: Colormap.cpp.i
 
-.PHONY : JetColormap.i
+.PHONY : Colormap.i
 
 # target to preprocess a source file
-JetColormap.cpp.i:
-	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/JetColormap.cpp.i
-.PHONY : JetColormap.cpp.i
+Colormap.cpp.i:
+	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/Colormap.cpp.i
+.PHONY : Colormap.cpp.i
 
-JetColormap.s: JetColormap.cpp.s
+Colormap.s: Colormap.cpp.s
 
-.PHONY : JetColormap.s
+.PHONY : Colormap.s
 
 # target to generate assembly for a file
-JetColormap.cpp.s:
-	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/JetColormap.cpp.s
-.PHONY : JetColormap.cpp.s
+Colormap.cpp.s:
+	$(MAKE) -f CMakeFiles/Multi-ply-manipulator.dir/build.make CMakeFiles/Multi-ply-manipulator.dir/Colormap.cpp.s
+.PHONY : Colormap.cpp.s
 
 cameraviewtransform.o: cameraviewtransform.cpp.o
 
@@ -402,9 +402,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Multi-ply-manipulator"
 	@echo "... edit_cache"
-	@echo "... JetColormap.o"
-	@echo "... JetColormap.i"
-	@echo "... JetColormap.s"
+	@echo "... Colormap.o"
+	@echo "... Colormap.i"
+	@echo "... Colormap.s"
 	@echo "... cameraviewtransform.o"
 	@echo "... cameraviewtransform.i"
 	@echo "... cameraviewtransform.s"

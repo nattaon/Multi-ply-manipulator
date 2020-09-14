@@ -1,5 +1,5 @@
 #include "histogramcalculation.h"
-#include "JetColormap.cpp"
+#include "Colormap.cpp"
 
 HistogramCalculation::HistogramCalculation()
 {
@@ -22,25 +22,21 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
     pcl::PointXYZ minpoint, maxpoint, boundingsize;
     pcl::getMinMax3D(*cloudxyz, minpoint, maxpoint);
 
-    std::cout << "minpoint "
-              << minpoint << std::endl;
-
-    std::cout << "maxpoint "
-              << maxpoint << std::endl;
+    std::cout << "minpoint " << minpoint << std::endl;
+    std::cout << "maxpoint " << maxpoint << std::endl;
 
     boundingsize.x = maxpoint.x - minpoint.x;
     boundingsize.y = maxpoint.y - minpoint.y;
     boundingsize.z = maxpoint.z - minpoint.z;
 
-    std::cout << "boundingsize "
-              << boundingsize << std::endl;
+    std::cout << "boundingsize " << boundingsize << std::endl;
 
     int img_width = (int)round(boundingsize.x *100);
     int img_height = (int)round(boundingsize.z *100);
 
-    std::cout << "Image size "
-              << img_width << "*" << img_height << std::endl;
+    std::cout << "Image size " << img_width << "*" << img_height << std::endl;
 
+    //normalize 0-1
     pcl::copyPointCloud(*cloudxyz, *cloud_norm);
     for (size_t i = 0; i < cloud_norm->points.size (); ++i)
     {
@@ -63,7 +59,8 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
     cv::Mat histimg_color(img_width, img_height, CV_8UC3, cv::Scalar(0,0,0));
 
     std::cout << "histimg(0, 0) = " << (int)histimg.at<uchar>(0, 0)<< std::endl;
-    std::cout <<  img_width << "," << img_height << " = " << (int)histimg.at<uchar>(img_width, img_height)<< std::endl;
+    std::cout << "histimg("<<  img_width << "," << img_height << ") = " << (int)histimg.at<uchar>(img_width, img_height)<< std::endl;
+    std::cout << "histimg("<<  img_width+1 << "," << img_height+1 << ") = " << (int)histimg.at<uchar>(img_width+1, img_height+1)<< std::endl;
 
     std::cout <<  "histimg.rows = " << histimg.rows << std::endl;
     std::cout <<  "histimg.cols = " << histimg.cols << std::endl;
@@ -71,7 +68,9 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
     int max_density=0;
 
     int hist_x, hist_y, hist_val;
-    int histogram_arr[img_width+1][img_height+1]; //histogram_arr[0][0] will not be used
+    int histogram_arr[img_width+1][img_height+1]; // index 0,1,2,...,img_width
+    //histogram_arr[0][0] will not be used? not true..
+
     //initialize histogram_arr
     for(int i= 0; i< img_width+1; i++)
       for(int j= 0; j< img_height+1; j++)
@@ -84,7 +83,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
       hist_x = (int)cloud_scale->points[i].x;
       hist_y = (int)cloud_scale->points[i].z;
 
-      if(hist_x == 0 || hist_y==0 || hist_x == img_width || hist_y==img_height)
+      if(hist_x < 0 || hist_y < 0 || hist_x > img_width || hist_y > img_height)
           std::cout <<hist_x <<"," << hist_y<<  std::endl;
 
       hist_val = (int)cloud_scale->points[i].y; //don't care the value of the current pixel
@@ -101,8 +100,8 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
     }
     std::cout << "max_density=" << (int)max_density << std::endl;
 
-    JetColormap color;
-    std::cout << "color[0]=" << color.colormap[0][0] << std::endl;
+    Colormap color;
+    std::cout << "color[0]=" << color.JetColormap[0][0] << std::endl;
 
     int c_index = 0;
 
@@ -114,9 +113,9 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
           c_index = (int)(255*histogram_arr[i][j]/max_density);
 
         //std::cout<< i <<"," << j << " : c_index=" << c_index << std::endl;
-        histimg_color.at<cv::Vec3b>(i, j)[0]= color.colormap[c_index][0]*255;
-        histimg_color.at<cv::Vec3b>(i, j)[1]= color.colormap[c_index][1]*255;
-        histimg_color.at<cv::Vec3b>(i, j)[2]= color.colormap[c_index][2]*255;
+        histimg_color.at<cv::Vec3b>(i, j)[0]= color.JetColormap[c_index][0]*255;
+        histimg_color.at<cv::Vec3b>(i, j)[1]= color.JetColormap[c_index][1]*255;
+        histimg_color.at<cv::Vec3b>(i, j)[2]= color.JetColormap[c_index][2]*255;
       }
     cv::cvtColor(histimg_color, histimg_color, cv::COLOR_BGR2RGB);
 
@@ -125,5 +124,12 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
 
     shownimage = histimg_color.clone();
 
+
+}
+
+void HistogramCalculation::SaveHistogramImage(std::string filename)
+{
+    cv::imwrite( filename, shownimage );
+    cv::destroyWindow("Histogram image");
 
 }

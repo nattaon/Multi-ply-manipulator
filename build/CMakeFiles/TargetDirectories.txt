@@ -1,3 +1,3 @@
-/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/rebuild_cache.dir
-/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir
-/home/nattaon/qt_project/Multi-ply-manipulator/build/CMakeFiles/edit_cache.dir
+/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/rebuild_cache.dir
+/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/Multi-ply-manipulator.dir
+/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/CMakeFiles/edit_cache.dir

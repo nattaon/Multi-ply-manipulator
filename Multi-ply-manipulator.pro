@@ -26,10 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    JetColormap.cpp \
     cameraviewtransform.cpp \
     pointcloudtransform.cpp \
-    histogramcalculation.cpp
+    histogramcalculation.cpp \
+    Colormap.cpp
 
 HEADERS += \
         mainwindow.h \

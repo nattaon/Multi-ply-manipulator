@@ -4,7 +4,7 @@ file(REMOVE_RECURSE
   "moc_histogramcalculation.cpp"
   "moc_mainwindow.cpp"
   "moc_pointcloudtransform.cpp"
-  "CMakeFiles/Multi-ply-manipulator.dir/JetColormap.cpp.o"
+  "CMakeFiles/Multi-ply-manipulator.dir/Colormap.cpp.o"
   "CMakeFiles/Multi-ply-manipulator.dir/cameraviewtransform.cpp.o"
   "CMakeFiles/Multi-ply-manipulator.dir/histogramcalculation.cpp.o"
   "CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o"
