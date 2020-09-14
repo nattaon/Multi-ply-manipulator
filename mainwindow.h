@@ -44,6 +44,8 @@ private:
 
     std::vector<int> plane_inliner_int;
 
+    cv::Mat shown_hist_image;
+
 
 /*
     boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer_input;
@@ -108,6 +110,7 @@ private slots:
     void on_pushButton_3_clicked();
     void on_bt_planeseg_1_clicked();
     void on_bt_planeseg_2_clicked();
+    void on_bt_savehistimg_clicked();
 };
 
 #endif // MAINWINDOW_H

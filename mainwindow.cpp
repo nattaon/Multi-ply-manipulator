@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     camview = new CameraviewTransform();
     pctrans = new PointcloudTransform();
+    histcalc = new HistogramCalculation();
 
     //Show list of ply files
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
@@ -256,8 +257,23 @@ void MainWindow::on_bt_drawplan_clicked()
 void MainWindow::on_bt_calchistogram_clicked()
 {
     qDebug() << "on_bt_calchistogram_clicked";
+
+    histcalc->CalculateHistogram(pctrans->GetRawPointCloud());
+
 }
 
+
+void MainWindow::on_bt_savehistimg_clicked()
+{
+    QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
+    //ui->prefiximg_lineEdit->text();
+    QString filename = ui->line_prefiximg->text() + item->text(0).section('.',0,0) + ".jpg";
+    std::cout << "histogram img filename " << filename.toStdString() << std::endl;
+
+
+    cv::imwrite( filename.toStdString(), shown_hist_image );
+    cv::destroyWindow("Histogram image");
+}
 
 
 void MainWindow::on_bt_voxelfilter_clicked()
