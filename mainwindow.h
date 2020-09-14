@@ -42,6 +42,8 @@ private:
     QString currentPlyDir;
     int currentSelectingPlyIndex;
 
+    std::vector<int> plane_inliner_int;
+
 
 /*
     boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer_input;
@@ -76,7 +78,7 @@ private slots:
     void Button_aabb_clicked();
     void SelectPlyFile(QTreeWidgetItem *item, int col);*/
 
-    void on_bt_aabb_clicked();
+
     void on_bt_calchistogram_clicked();
 
     void on_bt_openplyfolder_clicked();
@@ -94,6 +96,18 @@ private slots:
     void on_bt_yrot_clicked();
     void on_bt_zrot_clicked();
     void on_bt_planeseg_clicked();
+
+    void on_bt_drawplan_clicked();
+    void on_bt_planestimate_clicked();
+
+    void on_bt_outlierremove_clicked();
+    void on_bt_setpointorigin_clicked();
+    void on_bt_voxelfilter_clicked();
+    void on_bt_test1_clicked();
+    void on_bt_test2_clicked();
+    void on_pushButton_3_clicked();
+    void on_bt_planeseg_1_clicked();
+    void on_bt_planeseg_2_clicked();
 };
 
 #endif // MAINWINDOW_H

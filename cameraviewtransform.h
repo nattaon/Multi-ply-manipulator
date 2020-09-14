@@ -1,7 +1,9 @@
 #ifndef CAMERAVIEWTRANSFORM_H
 #define CAMERAVIEWTRANSFORM_H
-#include <pcl/visualization/pcl_visualizer.h>
 
+#include <pcl/io/ply_io.h>
+#include <pcl/io/vtk_lib_io.h>
+#include <pcl/surface/vtk_smoothing/vtk_utils.h>
 
 #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/kdtree/kdtree_flann.h>
@@ -39,6 +41,11 @@ public:
     void SetViewLeft();
     void SetViewRight();
     void ShowRawPointCloud(PointCloudXYZRGB::Ptr pc);
+    void DrawPlane(pcl::ModelCoefficients::Ptr plane_coeff, std::string cloudname);
+    void DrawPlane2(pcl::ModelCoefficients plane_coeff, std::string cloudname);
+
+    void DrawTextAtPoint(PointTypeXYZ point_position, double text_scale,
+        double r, double g, double b, std::string drawtext, std::string cloudname);
 
 private:
 

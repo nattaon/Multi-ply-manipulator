@@ -172,20 +172,87 @@ void MainWindow::on_bt_zrot_clicked()
 void MainWindow::on_bt_planeseg_clicked()
 {
     double planeseg_threshold = ui->line_planeseg_inlier->text().toDouble();
-    pctrans->ApplyPlaneSegmentation(planeseg_threshold);
+    /*pcl::ModelCoefficients plane_coeff;
+    plane_coeff.values.resize (4);
+    plane_coeff.values[0] = ui->line_planecoef_a->text().toDouble();
+    plane_coeff.values[1] = ui->line_planecoef_b->text().toDouble();
+    plane_coeff.values[2] = ui->line_planecoef_c->text().toDouble();
+    plane_coeff.values[3] = ui->line_planecoef_d->text().toDouble();*/
+
+
+
+    pctrans->ApplyPlaneSegmentationWithInlierPointcloud(planeseg_threshold);
+
+
+
+
+    //pctrans->ApplyPlaneSegmentation(planeseg_threshold);
+
+    //Debug: drawing a plane equation
+    //pcl::ModelCoefficients::Ptr plancoef = pctrans->GetPlaneSegmentationParameter(planeseg_threshold);
+    //std::cout << "plancoef : "<< plancoef->values.size()  << " : " << plancoef->values[0] << " " << plancoef->values[1] << " " << plancoef->values[2] <<  " " << plancoef->values[3] << std::endl;
+    //camview->DrawPlane(plancoef,"planseg");
+
+
+
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     qDebug() << "remain points " << pctrans->GetRawPLYSize();
 }
 
 
+void MainWindow::on_bt_planestimate_clicked()
+{
+    double planeseg_threshold = ui->line_planeseg_inlier->text().toDouble();
+    Eigen::Vector4f plane_coeff = Eigen::Vector4f(ui->line_planecoef_a->text().toDouble(), ui->line_planecoef_b->text().toDouble(),
+                                                   ui->line_planecoef_c->text().toDouble(), ui->line_planecoef_d->text().toDouble());
+    plane_inliner_int = pctrans->ApplyPlaneSegmentationWithParameter(planeseg_threshold, plane_coeff);
+
+    //std::cout << "plane_inliner_int size : " << plane_inliner_int.size();  //print nothing dont know why..
+    qDebug() << "plane_inliner_int size : " << plane_inliner_int.size();
+
+}
+void MainWindow::on_bt_planeseg_1_clicked()
+{
+    double threshold = ui->line_planeseg_inlier->text().toDouble();
+    pctrans->PlaneSegmentation1(threshold);
+}
+
+void MainWindow::on_bt_planeseg_2_clicked()
+{
+    double threshold = ui->line_planeseg_inlier->text().toDouble();
+    pctrans->PlaneSegmentation2(threshold);
+}
+
+void MainWindow::on_bt_drawplan_clicked()
+{
+    //double coef_a = ui->line_planecoef_a->text().toDouble();
+    //double coef_b = ui->line_planecoef_b->text().toDouble();
+    //double coef_c = ui->line_planecoef_c->text().toDouble();
+    //double coef_d = ui->line_planecoef_d->text().toDouble();
+
+    pcl::ModelCoefficients plane_coeff;
+    plane_coeff.values.resize (4);
+    plane_coeff.values[0] = ui->line_planecoef_a->text().toDouble();
+    plane_coeff.values[1] = ui->line_planecoef_b->text().toDouble();
+    plane_coeff.values[2] = ui->line_planecoef_c->text().toDouble();
+    plane_coeff.values[3] = ui->line_planecoef_d->text().toDouble();
+
+    camview->DrawPlane2(plane_coeff,"plane");
+
+    pcl::PointXYZ point;
+    point.x=0;
+    point.y=0;
+    point.z=0;
+//  QString text_coef = ui->line_planecoef_a->text() + "," + ui->line_planecoef_b->text()+ "," + ui->line_planecoef_c->text()+ "," + ui->line_planecoef_d->text();
+    std::string text = ui->line_planecoef_a->text().toStdString() + "," + ui->line_planecoef_b->text().toStdString()+ "," + ui->line_planecoef_c->text().toStdString()+ "," + ui->line_planecoef_d->text().toStdString();
+    std::string name = "planecoef";
+    camview->DrawTextAtPoint(point, 0.5, 1.0, 0.0, 0.0, text, name);
+
+}
+
 // // // //
 
 
-
-void MainWindow::on_bt_aabb_clicked()
-{
-    qDebug() << "on_bt_aabb_clicked";
-}
 void MainWindow::on_bt_calchistogram_clicked()
 {
     qDebug() << "on_bt_calchistogram_clicked";
@@ -193,11 +260,88 @@ void MainWindow::on_bt_calchistogram_clicked()
 
 
 
+void MainWindow::on_bt_voxelfilter_clicked()
+{
+    double grid_size = ui->line_voxelfilter->text().toDouble();
+
+    qDebug() << "points before voxel grid " << ui->line_voxelfilter->text()<< " : " << pctrans->GetRawPLYSize();
+
+    pctrans->FilterVoxelSize(grid_size);
+
+    qDebug() << "points after voxel grid " << ui->line_voxelfilter->text()<< " : " << pctrans->GetRawPLYSize();
+
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+
+    //ui->label_in_pointsize->setText(QLocale(QLocale::English).toString(pctrans->GetRawPLYSize()));//add comma to number
+
+}
+
+
+void MainWindow::on_bt_outlierremove_clicked()
+{
+    int meank = ui->line_outlier_meank->text().toInt();
+    double stddist = ui->line_outlier_stddist->text().toDouble();
+
+    qDebug() << "points before outlierremove " << ui->line_outlier_meank->text()<< ", " << ui->line_outlier_stddist->text() << " : " << pctrans->GetRawPLYSize();
+
+    pctrans->StatisticalOutlierRemoval(meank,stddist);
+
+    qDebug() << "points after outlierremove " << ui->line_outlier_meank->text()<< ", " << ui->line_outlier_stddist->text() << " : " << pctrans->GetRawPLYSize();
+
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+
+    //ui->label_in_pointsize->setText(QLocale(QLocale::English).toString(pctrans->GetRawPLYSize()));//add comma to number
+}
+
+void MainWindow::on_bt_setpointorigin_clicked()
+{
+
+
+    Eigen::Vector3f masscenter = pctrans->CalculateMassCenterVoxel(0.2);
+
+    qDebug() << "previous masscenter = " << masscenter[0]<< ", " << masscenter[1] << ", " << masscenter[2];
+
+
+    PointTypeXYZRGB point1,point2;
+    point1.x=masscenter[0];
+    point1.y=masscenter[1];
+    point1.z=masscenter[2];
+    point2.x=0;
+    point2.y=0;
+    point2.z=0;
+    pctrans->MovePointCloudFromTo(point1,point2);
+
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+
+}
+
+
+void MainWindow::on_bt_test1_clicked()
+{
+    //QTime timecounter;
+    //timecounter.start();
 
 
 
+    //int nMilliseconds = timecounter.elapsed();
+    //cout << "CalculateMassCenter timer elapsed " << nMilliseconds << " msec" << endl;
+}
+
+void MainWindow::on_bt_test2_clicked()
+{
+
+    //QTime timecounter;
+    //timecounter.start();
 
 
 
+    //int nMilliseconds = timecounter.elapsed();
+    //cout << "CalculateMassCenterVoxel = "  << grid_size<< ", timer elapsed " << nMilliseconds << " msec" << endl;
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+
+}
 
 
