@@ -28,11 +28,11 @@ bool PointcloudTransform::savePLY(QString filename)// save PointCloudXYZRGB::Ptr
     int return_status;
 
     if (filename.endsWith (".ply", Qt::CaseInsensitive))
-      return_status = pcl::io::savePLYFileBinary (filename.toStdString(), *pointcloud);
+      return_status = pcl::io::savePLYFileASCII (filename.toStdString(), *pointcloud);
     else
     {
       filename.append(".ply");
-      return_status = pcl::io::savePLYFileBinary (filename.toStdString(), *pointcloud);
+      return_status = pcl::io::savePLYFileASCII (filename.toStdString(), *pointcloud);
     }
 
     if (return_status != 0)
@@ -42,6 +42,7 @@ bool PointcloudTransform::savePLY(QString filename)// save PointCloudXYZRGB::Ptr
     }
     return true;
 }
+
 
 
 PointCloudXYZRGB::Ptr PointcloudTransform::GetRawPointCloud()

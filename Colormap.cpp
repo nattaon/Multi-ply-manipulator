@@ -1,42 +1,10 @@
-#include<iostream>
-using namespace std; 
 class Colormap
 { 
-    private:
-
 
 public:
-enum ColormapEnum { Magma, Inferno, Plasma , Viridis, Cividis, Parula, JetMod};
-ColormapEnum cmaptype;
+//enum ColormapEnum { Magma, Inferno, Plasma , Viridis, Cividis, Parula, JetMod};
+//ColormapEnum cmaptype;
 
-void SetColormap(int colorindex)
-{
-
-    switch(colorindex)
-    {
-        case 0 : cmaptype=Magma; break;
-        case 1 : cmaptype=Inferno; break;
-        case 2 : cmaptype=Plasma; break;
-        case 3 : cmaptype=Viridis; break;
-        case 4 : cmaptype=Cividis; break;
-        case 5 : cmaptype=Parula; break;
-        case 6 : cmaptype=JetMod; break;
-    }
-}
-
-float GetColormap(int index, int rgb)
-{
-    switch(cmaptype)
-    {
-        case Magma  : return MagmaColormap[index][rgb];   break;
-        case Inferno: return InfernoColormap[index][rgb]; break;
-        case Plasma : return PlasmaColormap[index][rgb]; break;
-        case Viridis  : return ViridisColormap[index][rgb];   break;
-        case Cividis: return CividisColormap[index][rgb]; break;
-        case Parula : return ParulaColormap[index][rgb]; break;
-        case JetMod : return JetModColormap[index][rgb]; break;
-    }
-}
 
 float ParulaColormap[256][3] =
 {

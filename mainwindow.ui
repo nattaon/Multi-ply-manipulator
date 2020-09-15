@@ -644,6 +644,9 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="currentText">
+       <string>Inferno</string>
+      </property>
       <item>
        <property name="text">
         <string>Magma</string>
@@ -761,6 +764,7 @@
     <property name="title">
      <string>Pointcloud</string>
     </property>
+    <addaction name="actionSet_points_origin_whole_folder"/>
    </widget>
    <widget class="QMenu" name="menuHistogramImg">
     <property name="title">
@@ -800,6 +804,11 @@
   <action name="actionSelect_img_folder">
    <property name="text">
     <string>Select img folder</string>
+   </property>
+  </action>
+  <action name="actionSet_points_origin_whole_folder">
+   <property name="text">
+    <string>Set points origin whole folder</string>
    </property>
   </action>
  </widget>

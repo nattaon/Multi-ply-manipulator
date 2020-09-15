@@ -1,8 +1,10 @@
 #ifndef HISTOGRAMCALCULATION_H
 #define HISTOGRAMCALCULATION_H
+#include "Colormap.cpp"
 
-
+#include <iostream>
 #include <QDebug>
+#include <QFile>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/io/ply_io.h>
@@ -25,7 +27,7 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-
+#include <cmath>
 typedef pcl::PointXYZ PointTypeXYZ;
 typedef pcl::PointXYZRGB PointTypeXYZRGB;
 typedef pcl::PointCloud<PointTypeXYZRGB> PointCloudXYZRGB;
@@ -35,11 +37,31 @@ class HistogramCalculation
 {
 public:
     HistogramCalculation();
+    ~HistogramCalculation();
     void CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex);
     void SaveHistogramImage(std::string filename);
 
+    bool savePLY_cloud_norm(QString filename);
+    bool savePLY_cloud_scale(QString filename);
+
+    void SetColormap(int colorindex);
+    float GetColormap(int index, int rgb);
+    QString GetColorname(int colorindex);
+
+
+    QString PointXYZtoQString(pcl::PointXYZ pt);
+    void SetHistogrameLogFile(QString filename);
+
+    enum ColormapEnum { Magma, Inferno, Plasma , Viridis, Cividis, Parula, JetMod};
+
+
 private:
-    cv::Mat shownimage;
+    cv::Mat shownimage, black_img;
+    ColormapEnum cmaptype;
+    Colormap colormap;
+    PointCloudXYZ::Ptr cloudxyz,cloud_norm,cloud_scale;
+    QFile histogram_log_file;
+    QString histogram_log;
 
 
 };

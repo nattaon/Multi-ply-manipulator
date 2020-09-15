@@ -34,6 +34,7 @@ class Ui_MainWindow
 public:
     QAction *actionSelect_ply_folder;
     QAction *actionSelect_img_folder;
+    QAction *actionSet_points_origin_whole_folder;
     QWidget *centralWidget;
     QTabWidget *tabWidget;
     QWidget *tab_pointcloud;
@@ -106,6 +107,8 @@ public:
         actionSelect_ply_folder->setObjectName(QStringLiteral("actionSelect_ply_folder"));
         actionSelect_img_folder = new QAction(MainWindow);
         actionSelect_img_folder->setObjectName(QStringLiteral("actionSelect_img_folder"));
+        actionSet_points_origin_whole_folder = new QAction(MainWindow);
+        actionSet_points_origin_whole_folder->setObjectName(QStringLiteral("actionSet_points_origin_whole_folder"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -305,6 +308,7 @@ public:
         menuFile->addAction(actionSelect_ply_folder);
         menuFile->addSeparator();
         menuFile->addAction(actionSelect_img_folder);
+        menuPointcloud->addAction(actionSet_points_origin_whole_folder);
 
         retranslateUi(MainWindow);
 
@@ -319,6 +323,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         actionSelect_ply_folder->setText(QApplication::translate("MainWindow", "Select ply folder", Q_NULLPTR));
         actionSelect_img_folder->setText(QApplication::translate("MainWindow", "Select img folder", Q_NULLPTR));
+        actionSet_points_origin_whole_folder->setText(QApplication::translate("MainWindow", "Set points origin whole folder", Q_NULLPTR));
         bt_openplyfolder->setText(QApplication::translate("MainWindow", "Open this folder", Q_NULLPTR));
         QTreeWidgetItem *___qtreewidgetitem = plyfiles_treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Filename", Q_NULLPTR));
@@ -374,6 +379,7 @@ public:
          << QApplication::translate("MainWindow", "Parula", Q_NULLPTR)
          << QApplication::translate("MainWindow", "JetMod", Q_NULLPTR)
         );
+        comboBox_colormap->setCurrentText(QApplication::translate("MainWindow", "Inferno", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_label), QApplication::translate("MainWindow", "Labelling", Q_NULLPTR));
         bt_test1->setText(QApplication::translate("MainWindow", "Test 1", Q_NULLPTR));

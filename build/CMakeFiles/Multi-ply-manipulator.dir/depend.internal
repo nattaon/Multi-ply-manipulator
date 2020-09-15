@@ -1055,6 +1055,7 @@ CMakeFiles/Multi-ply-manipulator.dir/histogramcalculation.cpp.o
  /usr/include/vtk-6.3/vtkWeakPointerBase.h
  /usr/include/vtk-6.3/vtkWin32Header.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h
@@ -1072,6 +1073,8 @@ CMakeFiles/Multi-ply-manipulator.dir/histogramcalculation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qgenericatomic.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h
@@ -1238,6 +1241,7 @@ CMakeFiles/Multi-ply-manipulator.dir/histogramcalculation.cpp.o
  /usr/local/include/opencv2/videostab/stabilizer.hpp
  /usr/local/include/opencv2/videostab/wobble_suppression.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o
+ /home/nattaon/qt_project/Multi-ply-manipulator/Colormap.cpp
  /home/nattaon/qt_project/Multi-ply-manipulator/cameraviewtransform.h
  /home/nattaon/qt_project/Multi-ply-manipulator/histogramcalculation.h
  /home/nattaon/qt_project/Multi-ply-manipulator/main.cpp
@@ -1824,6 +1828,7 @@ CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/bits/typesizes.h
  /usr/include/x86_64-linux-gnu/bits/wordsize.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QLocale
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime
@@ -2674,6 +2679,7 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o
  /usr/include/x86_64-linux-gnu/bits/typesizes.h
  /usr/include/x86_64-linux-gnu/bits/wordsize.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QLocale
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime
@@ -3549,6 +3555,7 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_cameraviewtransform.cpp.o
 CMakeFiles/Multi-ply-manipulator.dir/moc_histogramcalculation.cpp.o
  /home/nattaon/qt_project/Multi-ply-manipulator/build/moc_histogramcalculation.cpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o
+ /home/nattaon/qt_project/Multi-ply-manipulator/Colormap.cpp
  /home/nattaon/qt_project/Multi-ply-manipulator/build/moc_mainwindow.cpp
  /home/nattaon/qt_project/Multi-ply-manipulator/cameraviewtransform.h
  /home/nattaon/qt_project/Multi-ply-manipulator/histogramcalculation.h
@@ -4135,6 +4142,7 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o
  /usr/include/x86_64-linux-gnu/bits/typesizes.h
  /usr/include/x86_64-linux-gnu/bits/wordsize.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QLocale
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime

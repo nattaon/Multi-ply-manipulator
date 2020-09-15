@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/nattaon/qt_project/Multi-ply-manipulator/Colormap.cpp
-iostream
--
 
 /home/nattaon/qt_project/Multi-ply-manipulator/build/moc_cameraviewtransform.cpp
 ../cameraviewtransform.h
@@ -103,11 +101,15 @@ QObject
 /home/nattaon/qt_project/Multi-ply-manipulator/histogramcalculation.cpp
 histogramcalculation.h
 /home/nattaon/qt_project/Multi-ply-manipulator/histogramcalculation.h
-Colormap.cpp
-/home/nattaon/qt_project/Multi-ply-manipulator/Colormap.cpp
 
 /home/nattaon/qt_project/Multi-ply-manipulator/histogramcalculation.h
+Colormap.cpp
+/home/nattaon/qt_project/Multi-ply-manipulator/Colormap.cpp
+iostream
+-
 QDebug
+-
+QFile
 -
 pcl/point_cloud.h
 -
@@ -145,6 +147,8 @@ opencv2/imgcodecs.hpp
 -
 opencv2/imgproc/imgproc.hpp
 -
+cmath
+-
 
 /home/nattaon/qt_project/Multi-ply-manipulator/main.cpp
 mainwindow.h
@@ -157,8 +161,6 @@ mainwindow.h
 /home/nattaon/qt_project/Multi-ply-manipulator/mainwindow.h
 build/ui_mainwindow.h
 /home/nattaon/qt_project/Multi-ply-manipulator/build/ui_mainwindow.h
-Colormap.cpp
-/home/nattaon/qt_project/Multi-ply-manipulator/Colormap.cpp
 
 /home/nattaon/qt_project/Multi-ply-manipulator/mainwindow.h
 cameraviewtransform.h
@@ -4413,6 +4415,10 @@ bits/typesizes.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug
 qdebug.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QFile
+qfile.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QLocale
 qlocale.h
