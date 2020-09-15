@@ -1,4 +1,4 @@
-# Install script for directory: /home/okuboali/nattaon_ws2/Multi-ply-manipulator
+# Install script for directory: /home/nattaon/qt_project/Multi-ply-manipulator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/okuboali/nattaon_ws2/Multi-ply-manipulator/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nattaon/qt_project/Multi-ply-manipulator/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

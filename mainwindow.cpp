@@ -257,9 +257,10 @@ void MainWindow::on_bt_drawplan_clicked()
 
 void MainWindow::on_bt_calchistogram_clicked()
 {
-    qDebug() << "on_bt_calchistogram_clicked";
+    qDebug() << "on_bt_calchistogram_clicked "<< ui->comboBox_colormap->currentText();
+    //ui->comboBox_colormap->currentIndex()
 
-    histcalc->CalculateHistogram(pctrans->GetRawPointCloud());
+    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
 
 }
 

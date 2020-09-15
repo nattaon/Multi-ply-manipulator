@@ -6,12 +6,15 @@ HistogramCalculation::HistogramCalculation()
 
 }
 
-void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
+void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex)
 {
     if(pointcloud->width ==0)
     {
         qDebug() << "no pointcloud load";
     }
+    Colormap color;
+
+    cv::destroyWindow("Histogram image");
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloudxyz (new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_norm (new pcl::PointCloud<pcl::PointXYZ>);
@@ -100,8 +103,11 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
     }
     std::cout << "max_density=" << (int)max_density << std::endl;
 
-    Colormap color;
-    std::cout << "color[0]=" << color.JetColormap[0][0] << std::endl;
+
+    //color.SetColormap("Magma");
+    //color.cmaptype = Colormap::ColormapEnum::Magma;
+    color.SetColormap(colormapindex);
+    std::cout << "color[0]=" << color.GetColormap(0,0) << std::endl;
 
     int c_index = 0;
 
@@ -113,9 +119,12 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud)
           c_index = (int)(255*histogram_arr[i][j]/max_density);
 
         //std::cout<< i <<"," << j << " : c_index=" << c_index << std::endl;
-        histimg_color.at<cv::Vec3b>(i, j)[0]= color.JetColormap[c_index][0]*255;
-        histimg_color.at<cv::Vec3b>(i, j)[1]= color.JetColormap[c_index][1]*255;
-        histimg_color.at<cv::Vec3b>(i, j)[2]= color.JetColormap[c_index][2]*255;
+        //histimg_color.at<cv::Vec3b>(i, j)[0]= color.ViridisColormap[c_index][0]*255;
+        //histimg_color.at<cv::Vec3b>(i, j)[1]= color.ViridisColormap[c_index][1]*255;
+        //histimg_color.at<cv::Vec3b>(i, j)[2]= color.ViridisColormap[c_index][2]*255;
+          histimg_color.at<cv::Vec3b>(i, j)[0]= color.GetColormap(c_index,0)*255;
+          histimg_color.at<cv::Vec3b>(i, j)[1]= color.GetColormap(c_index,1)*255;
+          histimg_color.at<cv::Vec3b>(i, j)[2]= color.GetColormap(c_index,2)*255;
       }
     cv::cvtColor(histimg_color, histimg_color, cv::COLOR_BGR2RGB);
 

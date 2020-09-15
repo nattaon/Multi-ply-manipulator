@@ -1,6 +1,7 @@
 #ifndef HISTOGRAMCALCULATION_H
 #define HISTOGRAMCALCULATION_H
 
+
 #include <QDebug>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
@@ -34,11 +35,13 @@ class HistogramCalculation
 {
 public:
     HistogramCalculation();
-    void CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud);
+    void CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex);
     void SaveHistogramImage(std::string filename);
 
 private:
     cv::Mat shownimage;
+
+
 };
 
 #endif // HISTOGRAMCALCULATION_H

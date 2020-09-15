@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -81,6 +82,7 @@ public:
     QPushButton *bt_outlierremove;
     QPushButton *bt_setpointorigin;
     QPushButton *bt_planeseg_2;
+    QComboBox *comboBox_colormap;
     QWidget *tab_label;
     QPushButton *bt_test1;
     QPushButton *bt_test2;
@@ -99,7 +101,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(681, 527);
+        MainWindow->resize(650, 550);
         actionSelect_ply_folder = new QAction(MainWindow);
         actionSelect_ply_folder->setObjectName(QStringLiteral("actionSelect_ply_folder"));
         actionSelect_img_folder = new QAction(MainWindow);
@@ -108,7 +110,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 10, 531, 451));
+        tabWidget->setGeometry(QRect(10, 10, 531, 471));
         tab_pointcloud = new QWidget();
         tab_pointcloud->setObjectName(QStringLiteral("tab_pointcloud"));
         bt_openplyfolder = new QPushButton(tab_pointcloud);
@@ -119,22 +121,22 @@ public:
         line_plyfoldername->setGeometry(QRect(140, 10, 351, 25));
         plyfiles_treeWidget = new QTreeWidget(tab_pointcloud);
         plyfiles_treeWidget->setObjectName(QStringLiteral("plyfiles_treeWidget"));
-        plyfiles_treeWidget->setGeometry(QRect(10, 40, 191, 371));
+        plyfiles_treeWidget->setGeometry(QRect(10, 40, 191, 391));
         plyfiles_treeWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         plyfiles_treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         plyfiles_treeWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         bt_calchistogram = new QPushButton(tab_pointcloud);
         bt_calchistogram->setObjectName(QStringLiteral("bt_calchistogram"));
-        bt_calchistogram->setGeometry(QRect(210, 380, 121, 25));
+        bt_calchistogram->setGeometry(QRect(310, 380, 121, 25));
         label_prefixhist = new QLabel(tab_pointcloud);
         label_prefixhist->setObjectName(QStringLiteral("label_prefixhist"));
-        label_prefixhist->setGeometry(QRect(340, 382, 41, 20));
+        label_prefixhist->setGeometry(QRect(260, 412, 41, 20));
         line_prefiximg = new QLineEdit(tab_pointcloud);
         line_prefiximg->setObjectName(QStringLiteral("line_prefiximg"));
-        line_prefiximg->setGeometry(QRect(390, 380, 51, 25));
+        line_prefiximg->setGeometry(QRect(310, 410, 51, 25));
         bt_savehistimg = new QPushButton(tab_pointcloud);
         bt_savehistimg->setObjectName(QStringLiteral("bt_savehistimg"));
-        bt_savehistimg->setGeometry(QRect(440, 380, 71, 25));
+        bt_savehistimg->setGeometry(QRect(360, 410, 71, 25));
         bt_saveply = new QPushButton(tab_pointcloud);
         bt_saveply->setObjectName(QStringLiteral("bt_saveply"));
         bt_saveply->setGeometry(QRect(420, 40, 71, 25));
@@ -254,6 +256,9 @@ public:
         bt_planeseg_2 = new QPushButton(tab_pointcloud);
         bt_planeseg_2->setObjectName(QStringLiteral("bt_planeseg_2"));
         bt_planeseg_2->setGeometry(QRect(440, 280, 81, 25));
+        comboBox_colormap = new QComboBox(tab_pointcloud);
+        comboBox_colormap->setObjectName(QStringLiteral("comboBox_colormap"));
+        comboBox_colormap->setGeometry(QRect(210, 380, 91, 25));
         tabWidget->addTab(tab_pointcloud, QString());
         tab_label = new QWidget();
         tab_label->setObjectName(QStringLiteral("tab_label"));
@@ -273,7 +278,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 681, 22));
+        menuBar->setGeometry(QRect(0, 0, 650, 22));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuPointcloud = new QMenu(menuBar);
@@ -359,6 +364,16 @@ public:
         bt_outlierremove->setText(QApplication::translate("MainWindow", "Outlier remove", Q_NULLPTR));
         bt_setpointorigin->setText(QApplication::translate("MainWindow", "Set points origin", Q_NULLPTR));
         bt_planeseg_2->setText(QApplication::translate("MainWindow", "PlaneSeg2", Q_NULLPTR));
+        comboBox_colormap->clear();
+        comboBox_colormap->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Magma", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Inferno", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Plasma", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Viridis", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Cividis", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Parula", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "JetMod", Q_NULLPTR)
+        );
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_label), QApplication::translate("MainWindow", "Labelling", Q_NULLPTR));
         bt_test1->setText(QApplication::translate("MainWindow", "Test 1", Q_NULLPTR));
