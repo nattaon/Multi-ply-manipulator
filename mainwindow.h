@@ -10,6 +10,8 @@
 #include <QTreeWidgetItem>
 #include <QDebug>
 #include <QLocale>
+#include <QHeaderView>
+#include <QMessageBox>
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
@@ -45,6 +47,8 @@ private:
     std::vector<int> plane_inliner_int;
 
     cv::Mat shown_hist_image;
+
+    Eigen::Matrix<float, 1, 3>  rotation_vector_x,rotation_vector_y,rotation_vector_z;
 
 
 /*
@@ -114,6 +118,14 @@ private slots:
     void on_actionSet_points_origin_whole_folder_triggered();
     void on_bt_histgraph1_clicked();
     void on_bt_histgraph2_clicked();
+    void on_bt_xrot_minus_clicked();
+    void on_bt_xrot_plus_clicked();
+    void on_bt_yrot_minus_clicked();
+    void on_bt_yrot_plus_clicked();
+    void on_bt_zrot_minus_clicked();
+    void on_bt_zrot_plus_clicked();
+
+
 };
 
 #endif // MAINWINDOW_H

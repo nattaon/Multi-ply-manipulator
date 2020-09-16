@@ -1940,7 +1940,9 @@ CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/q
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHeaderView
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTreeWidgetItem
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemdelegate.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemview.h
@@ -1952,7 +1954,9 @@ CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/q
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qfiledialog.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qheaderview.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h
@@ -2797,6 +2801,7 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QButtonGroup
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QCheckBox
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHeaderView
@@ -2805,6 +2810,7 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenu
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStatusBar
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
@@ -2822,6 +2828,7 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qbuttongroup.h
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcheckbox.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcombobox.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdesktopwidget.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h
@@ -2833,6 +2840,7 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
@@ -4249,7 +4257,9 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-l
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHeaderView
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTreeWidgetItem
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemdelegate.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemview.h
@@ -4259,7 +4269,9 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-l
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qfiledialog.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qheaderview.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h

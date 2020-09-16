@@ -37,6 +37,8 @@ QtWidgets/QApplication
 -
 QtWidgets/QButtonGroup
 -
+QtWidgets/QCheckBox
+-
 QtWidgets/QComboBox
 -
 QtWidgets/QHeaderView
@@ -178,6 +180,10 @@ QTreeWidgetItem
 QDebug
 -
 QLocale
+-
+QHeaderView
+-
+QMessageBox
 -
 opencv2/core.hpp
 -
@@ -5576,6 +5582,10 @@ qapplication.h
 qbuttongroup.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qbuttongroup.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QCheckBox
+qcheckbox.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcheckbox.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox
 qcombobox.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcombobox.h
@@ -5607,6 +5617,10 @@ qmenu.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar
 qmenubar.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox
+qmessagebox.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 qpushbutton.h
@@ -5732,6 +5746,12 @@ QtWidgets/qtwidgetsglobal.h
 QtCore/qobject.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcheckbox.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qabstractbutton.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcombobox.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -5824,6 +5844,12 @@ QtWidgets/qaction.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qmenu.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qdialog.h
 -
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h

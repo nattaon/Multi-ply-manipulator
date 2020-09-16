@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -87,6 +88,13 @@ public:
     QPushButton *bt_histgraph2;
     QLineEdit *line_histnameimg;
     QLineEdit *line_postfiximg;
+    QPushButton *bt_xrot_plus;
+    QPushButton *bt_xrot_minus;
+    QPushButton *bt_yrot_plus;
+    QPushButton *bt_yrot_minus;
+    QPushButton *bt_zrot_plus;
+    QPushButton *bt_zrot_minus;
+    QCheckBox *checkBox_autocalchist;
     QWidget *tab_label;
     QPushButton *bt_test1;
     QPushButton *bt_test2;
@@ -160,10 +168,10 @@ public:
         label_voxelsize->setGeometry(QRect(210, 75, 67, 16));
         bt_viewleft = new QPushButton(tab_pointcloud);
         bt_viewleft->setObjectName(QStringLiteral("bt_viewleft"));
-        bt_viewleft->setGeometry(QRect(210, 210, 50, 25));
+        bt_viewleft->setGeometry(QRect(210, 210, 21, 25));
         bt_viewright = new QPushButton(tab_pointcloud);
         bt_viewright->setObjectName(QStringLiteral("bt_viewright"));
-        bt_viewright->setGeometry(QRect(330, 210, 50, 25));
+        bt_viewright->setGeometry(QRect(270, 210, 21, 25));
         label_camera = new QLabel(tab_pointcloud);
         label_camera->setObjectName(QStringLiteral("label_camera"));
         label_camera->setGeometry(QRect(210, 140, 101, 20));
@@ -173,31 +181,31 @@ public:
         label_camera->setFont(font);
         bt_viewdown = new QPushButton(tab_pointcloud);
         bt_viewdown->setObjectName(QStringLiteral("bt_viewdown"));
-        bt_viewdown->setGeometry(QRect(270, 240, 50, 25));
+        bt_viewdown->setGeometry(QRect(240, 240, 21, 25));
         bt_viewup = new QPushButton(tab_pointcloud);
         bt_viewup->setObjectName(QStringLiteral("bt_viewup"));
-        bt_viewup->setGeometry(QRect(270, 180, 50, 25));
+        bt_viewup->setGeometry(QRect(240, 180, 21, 25));
         bt_resetcam = new QPushButton(tab_pointcloud);
         bt_resetcam->setObjectName(QStringLiteral("bt_resetcam"));
-        bt_resetcam->setGeometry(QRect(270, 210, 50, 25));
+        bt_resetcam->setGeometry(QRect(240, 210, 21, 25));
         line_x_rot = new QLineEdit(tab_pointcloud);
         line_x_rot->setObjectName(QStringLiteral("line_x_rot"));
-        line_x_rot->setGeometry(QRect(470, 180, 31, 25));
+        line_x_rot->setGeometry(QRect(350, 180, 31, 25));
         bt_xrot = new QPushButton(tab_pointcloud);
         bt_xrot->setObjectName(QStringLiteral("bt_xrot"));
-        bt_xrot->setGeometry(QRect(420, 180, 51, 25));
+        bt_xrot->setGeometry(QRect(310, 180, 41, 25));
         line_y_rot = new QLineEdit(tab_pointcloud);
         line_y_rot->setObjectName(QStringLiteral("line_y_rot"));
-        line_y_rot->setGeometry(QRect(470, 210, 31, 25));
+        line_y_rot->setGeometry(QRect(350, 210, 31, 25));
         line_z_rot = new QLineEdit(tab_pointcloud);
         line_z_rot->setObjectName(QStringLiteral("line_z_rot"));
-        line_z_rot->setGeometry(QRect(470, 240, 31, 25));
+        line_z_rot->setGeometry(QRect(350, 240, 31, 25));
         bt_yrot = new QPushButton(tab_pointcloud);
         bt_yrot->setObjectName(QStringLiteral("bt_yrot"));
-        bt_yrot->setGeometry(QRect(420, 210, 51, 25));
+        bt_yrot->setGeometry(QRect(310, 210, 41, 25));
         bt_zrot = new QPushButton(tab_pointcloud);
         bt_zrot->setObjectName(QStringLiteral("bt_zrot"));
-        bt_zrot->setGeometry(QRect(420, 240, 51, 25));
+        bt_zrot->setGeometry(QRect(310, 240, 41, 25));
         label_press_o = new QLabel(tab_pointcloud);
         label_press_o->setObjectName(QStringLiteral("label_press_o"));
         label_press_o->setGeometry(QRect(210, 160, 211, 20));
@@ -274,6 +282,28 @@ public:
         line_postfiximg = new QLineEdit(tab_pointcloud);
         line_postfiximg->setObjectName(QStringLiteral("line_postfiximg"));
         line_postfiximg->setGeometry(QRect(390, 410, 51, 25));
+        bt_xrot_plus = new QPushButton(tab_pointcloud);
+        bt_xrot_plus->setObjectName(QStringLiteral("bt_xrot_plus"));
+        bt_xrot_plus->setGeometry(QRect(450, 190, 31, 25));
+        bt_xrot_minus = new QPushButton(tab_pointcloud);
+        bt_xrot_minus->setObjectName(QStringLiteral("bt_xrot_minus"));
+        bt_xrot_minus->setGeometry(QRect(450, 230, 31, 25));
+        bt_yrot_plus = new QPushButton(tab_pointcloud);
+        bt_yrot_plus->setObjectName(QStringLiteral("bt_yrot_plus"));
+        bt_yrot_plus->setGeometry(QRect(410, 180, 31, 25));
+        bt_yrot_minus = new QPushButton(tab_pointcloud);
+        bt_yrot_minus->setObjectName(QStringLiteral("bt_yrot_minus"));
+        bt_yrot_minus->setGeometry(QRect(490, 180, 31, 25));
+        bt_zrot_plus = new QPushButton(tab_pointcloud);
+        bt_zrot_plus->setObjectName(QStringLiteral("bt_zrot_plus"));
+        bt_zrot_plus->setGeometry(QRect(480, 210, 31, 25));
+        bt_zrot_minus = new QPushButton(tab_pointcloud);
+        bt_zrot_minus->setObjectName(QStringLiteral("bt_zrot_minus"));
+        bt_zrot_minus->setGeometry(QRect(420, 210, 31, 25));
+        checkBox_autocalchist = new QCheckBox(tab_pointcloud);
+        checkBox_autocalchist->setObjectName(QStringLiteral("checkBox_autocalchist"));
+        checkBox_autocalchist->setGeometry(QRect(400, 250, 121, 23));
+        checkBox_autocalchist->setChecked(true);
         tabWidget->addTab(tab_pointcloud, QString());
         tab_label = new QWidget();
         tab_label->setObjectName(QStringLiteral("tab_label"));
@@ -340,7 +370,7 @@ public:
         QTreeWidgetItem *___qtreewidgetitem = plyfiles_treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Filename", Q_NULLPTR));
         bt_calchistogram->setText(QApplication::translate("MainWindow", "Calc Histogram", Q_NULLPTR));
-        line_prefiximg->setText(QApplication::translate("MainWindow", "hist2_", Q_NULLPTR));
+        line_prefiximg->setText(QString());
         bt_savehistimg->setText(QApplication::translate("MainWindow", "Save img", Q_NULLPTR));
         bt_saveply->setText(QApplication::translate("MainWindow", "Save PLY", Q_NULLPTR));
         label_in_pointsize->setText(QApplication::translate("MainWindow", "000000000", Q_NULLPTR));
@@ -348,12 +378,12 @@ public:
         line_voxelfilter->setText(QApplication::translate("MainWindow", "0.01", Q_NULLPTR));
         bt_voxelfilter->setText(QApplication::translate("MainWindow", "Voxel filter points", Q_NULLPTR));
         label_voxelsize->setText(QApplication::translate("MainWindow", "Grid size", Q_NULLPTR));
-        bt_viewleft->setText(QApplication::translate("MainWindow", "Left", Q_NULLPTR));
-        bt_viewright->setText(QApplication::translate("MainWindow", "Right", Q_NULLPTR));
+        bt_viewleft->setText(QApplication::translate("MainWindow", "\342\206\220", Q_NULLPTR));
+        bt_viewright->setText(QApplication::translate("MainWindow", "\342\206\222", Q_NULLPTR));
         label_camera->setText(QApplication::translate("MainWindow", "Camera View ", Q_NULLPTR));
-        bt_viewdown->setText(QApplication::translate("MainWindow", "Down", Q_NULLPTR));
-        bt_viewup->setText(QApplication::translate("MainWindow", "Up", Q_NULLPTR));
-        bt_resetcam->setText(QApplication::translate("MainWindow", "Reset ", Q_NULLPTR));
+        bt_viewdown->setText(QApplication::translate("MainWindow", "\342\206\223", Q_NULLPTR));
+        bt_viewup->setText(QApplication::translate("MainWindow", "\342\206\221", Q_NULLPTR));
+        bt_resetcam->setText(QApplication::translate("MainWindow", "Re", Q_NULLPTR));
         line_x_rot->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         bt_xrot->setText(QApplication::translate("MainWindow", "X-rot", Q_NULLPTR));
         line_y_rot->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
@@ -394,6 +424,13 @@ public:
         bt_histgraph1->setText(QApplication::translate("MainWindow", "hist graph1", Q_NULLPTR));
         bt_histgraph2->setText(QApplication::translate("MainWindow", "hist graph2", Q_NULLPTR));
         line_postfiximg->setText(QApplication::translate("MainWindow", "-01", Q_NULLPTR));
+        bt_xrot_plus->setText(QApplication::translate("MainWindow", "x +1", Q_NULLPTR));
+        bt_xrot_minus->setText(QApplication::translate("MainWindow", "x -1", Q_NULLPTR));
+        bt_yrot_plus->setText(QApplication::translate("MainWindow", "y +1", Q_NULLPTR));
+        bt_yrot_minus->setText(QApplication::translate("MainWindow", "y -1", Q_NULLPTR));
+        bt_zrot_plus->setText(QApplication::translate("MainWindow", "z +1", Q_NULLPTR));
+        bt_zrot_minus->setText(QApplication::translate("MainWindow", "z -1", Q_NULLPTR));
+        checkBox_autocalchist->setText(QApplication::translate("MainWindow", "Auto Calc Hist", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_label), QApplication::translate("MainWindow", "Labelling", Q_NULLPTR));
         bt_test1->setText(QApplication::translate("MainWindow", "Test 1", Q_NULLPTR));
