@@ -112,6 +112,8 @@ private slots:
     void on_bt_planeseg_2_clicked();
     void on_bt_savehistimg_clicked();
     void on_actionSet_points_origin_whole_folder_triggered();
+    void on_bt_histgraph1_clicked();
+    void on_bt_histgraph2_clicked();
 };
 
 #endif // MAINWINDOW_H

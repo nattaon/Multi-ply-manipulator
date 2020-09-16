@@ -90,23 +90,10 @@
        <string>Calc Histogram</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_prefixhist">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>412</y>
-        <width>41</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>prefix</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="line_prefiximg">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>210</x>
         <y>410</y>
         <width>51</width>
         <height>25</height>
@@ -119,7 +106,7 @@
      <widget class="QPushButton" name="bt_savehistimg">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>450</x>
         <y>410</y>
         <width>71</width>
         <height>25</height>
@@ -536,7 +523,7 @@
        <rect>
         <x>310</x>
         <y>340</y>
-        <width>141</width>
+        <width>121</width>
         <height>25</height>
        </rect>
       </property>
@@ -645,7 +632,7 @@
        </rect>
       </property>
       <property name="currentText">
-       <string>Inferno</string>
+       <string>Magma</string>
       </property>
       <item>
        <property name="text">
@@ -682,6 +669,55 @@
         <string>JetMod</string>
        </property>
       </item>
+     </widget>
+     <widget class="QPushButton" name="bt_histgraph1">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>350</y>
+        <width>81</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>hist graph1</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_histgraph2">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>380</y>
+        <width>81</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>hist graph2</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line_histnameimg">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>410</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line_postfiximg">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>410</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-01</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_label">

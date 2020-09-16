@@ -42,7 +42,6 @@ public:
     QLineEdit *line_plyfoldername;
     QTreeWidget *plyfiles_treeWidget;
     QPushButton *bt_calchistogram;
-    QLabel *label_prefixhist;
     QLineEdit *line_prefiximg;
     QPushButton *bt_savehistimg;
     QPushButton *bt_saveply;
@@ -84,6 +83,10 @@ public:
     QPushButton *bt_setpointorigin;
     QPushButton *bt_planeseg_2;
     QComboBox *comboBox_colormap;
+    QPushButton *bt_histgraph1;
+    QPushButton *bt_histgraph2;
+    QLineEdit *line_histnameimg;
+    QLineEdit *line_postfiximg;
     QWidget *tab_label;
     QPushButton *bt_test1;
     QPushButton *bt_test2;
@@ -131,15 +134,12 @@ public:
         bt_calchistogram = new QPushButton(tab_pointcloud);
         bt_calchistogram->setObjectName(QStringLiteral("bt_calchistogram"));
         bt_calchistogram->setGeometry(QRect(310, 380, 121, 25));
-        label_prefixhist = new QLabel(tab_pointcloud);
-        label_prefixhist->setObjectName(QStringLiteral("label_prefixhist"));
-        label_prefixhist->setGeometry(QRect(260, 412, 41, 20));
         line_prefiximg = new QLineEdit(tab_pointcloud);
         line_prefiximg->setObjectName(QStringLiteral("line_prefiximg"));
-        line_prefiximg->setGeometry(QRect(310, 410, 51, 25));
+        line_prefiximg->setGeometry(QRect(210, 410, 51, 25));
         bt_savehistimg = new QPushButton(tab_pointcloud);
         bt_savehistimg->setObjectName(QStringLiteral("bt_savehistimg"));
-        bt_savehistimg->setGeometry(QRect(360, 410, 71, 25));
+        bt_savehistimg->setGeometry(QRect(450, 410, 71, 25));
         bt_saveply = new QPushButton(tab_pointcloud);
         bt_saveply->setObjectName(QStringLiteral("bt_saveply"));
         bt_saveply->setGeometry(QRect(420, 40, 71, 25));
@@ -237,7 +237,7 @@ public:
         bt_drawplan->setGeometry(QRect(210, 340, 89, 25));
         bt_planestimate = new QPushButton(tab_pointcloud);
         bt_planestimate->setObjectName(QStringLiteral("bt_planestimate"));
-        bt_planestimate->setGeometry(QRect(310, 340, 141, 25));
+        bt_planestimate->setGeometry(QRect(310, 340, 121, 25));
         label = new QLabel(tab_pointcloud);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(210, 105, 51, 17));
@@ -262,6 +262,18 @@ public:
         comboBox_colormap = new QComboBox(tab_pointcloud);
         comboBox_colormap->setObjectName(QStringLiteral("comboBox_colormap"));
         comboBox_colormap->setGeometry(QRect(210, 380, 91, 25));
+        bt_histgraph1 = new QPushButton(tab_pointcloud);
+        bt_histgraph1->setObjectName(QStringLiteral("bt_histgraph1"));
+        bt_histgraph1->setGeometry(QRect(440, 350, 81, 25));
+        bt_histgraph2 = new QPushButton(tab_pointcloud);
+        bt_histgraph2->setObjectName(QStringLiteral("bt_histgraph2"));
+        bt_histgraph2->setGeometry(QRect(440, 380, 81, 25));
+        line_histnameimg = new QLineEdit(tab_pointcloud);
+        line_histnameimg->setObjectName(QStringLiteral("line_histnameimg"));
+        line_histnameimg->setGeometry(QRect(270, 410, 113, 25));
+        line_postfiximg = new QLineEdit(tab_pointcloud);
+        line_postfiximg->setObjectName(QStringLiteral("line_postfiximg"));
+        line_postfiximg->setGeometry(QRect(390, 410, 51, 25));
         tabWidget->addTab(tab_pointcloud, QString());
         tab_label = new QWidget();
         tab_label->setObjectName(QStringLiteral("tab_label"));
@@ -328,7 +340,6 @@ public:
         QTreeWidgetItem *___qtreewidgetitem = plyfiles_treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Filename", Q_NULLPTR));
         bt_calchistogram->setText(QApplication::translate("MainWindow", "Calc Histogram", Q_NULLPTR));
-        label_prefixhist->setText(QApplication::translate("MainWindow", "prefix", Q_NULLPTR));
         line_prefiximg->setText(QApplication::translate("MainWindow", "hist2_", Q_NULLPTR));
         bt_savehistimg->setText(QApplication::translate("MainWindow", "Save img", Q_NULLPTR));
         bt_saveply->setText(QApplication::translate("MainWindow", "Save PLY", Q_NULLPTR));
@@ -379,7 +390,10 @@ public:
          << QApplication::translate("MainWindow", "Parula", Q_NULLPTR)
          << QApplication::translate("MainWindow", "JetMod", Q_NULLPTR)
         );
-        comboBox_colormap->setCurrentText(QApplication::translate("MainWindow", "Inferno", Q_NULLPTR));
+        comboBox_colormap->setCurrentText(QApplication::translate("MainWindow", "Magma", Q_NULLPTR));
+        bt_histgraph1->setText(QApplication::translate("MainWindow", "hist graph1", Q_NULLPTR));
+        bt_histgraph2->setText(QApplication::translate("MainWindow", "hist graph2", Q_NULLPTR));
+        line_postfiximg->setText(QApplication::translate("MainWindow", "-01", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_label), QApplication::translate("MainWindow", "Labelling", Q_NULLPTR));
         bt_test1->setText(QApplication::translate("MainWindow", "Test 1", Q_NULLPTR));

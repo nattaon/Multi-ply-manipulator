@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //Show list of ply files
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
     //currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
-    currentPlyDir = QString("../ply0").arg(QDir::separator());
+    currentPlyDir = QString("../ply").arg(QDir::separator());
     ui->line_plyfoldername->setText(currentPlyDir);
     ListPlyInFolder();
 
@@ -261,45 +261,6 @@ void MainWindow::on_bt_drawplan_clicked()
 // // // //
 
 
-void MainWindow::on_bt_calchistogram_clicked()
-{
-    qDebug() << "on_bt_calchistogram_clicked "<< ui->comboBox_colormap->currentText();
-    //ui->comboBox_colormap->currentIndex()
-
-
-    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
-
-}
-
-
-void MainWindow::on_bt_savehistimg_clicked()
-{
-    QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
-    //ui->prefiximg_lineEdit->text();
-
-    QString filename = ui->line_prefiximg->text() + item->text(0).section('.',0,0);
-
-    QString filepath_jpg = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + ".jpg";
-    QString filepath_txt = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + ".txt";
-    QString filepath_norm_ply = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + "_norm.ply";
-    QString filepath_scale_ply = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + "_scale.ply";
-
-    QDir dir(currentPlyDir + QDir::separator() + "histograme");
-    if (!dir.exists())
-        dir.mkpath(".");
-
-    std::cout << "histogram img filename " << filepath_jpg.toStdString() << std::endl;
-
-    histcalc->SetHistogrameLogFile(filepath_txt);
-
-    histcalc->savePLY_cloud_norm(filepath_norm_ply);
-    histcalc->savePLY_cloud_scale(filepath_scale_ply);
-
-    histcalc->SaveHistogramImage(filepath_jpg.toStdString());
-
-
-
-}
 
 
 void MainWindow::on_bt_voxelfilter_clicked()
@@ -338,7 +299,6 @@ void MainWindow::on_bt_outlierremove_clicked()
 void MainWindow::on_bt_setpointorigin_clicked()
 {
     Eigen::Vector3f masscenter = pctrans->CalculateMassCenterVoxel(0.2);
-
     qDebug() << "previous masscenter = " << masscenter[0]<< ", " << masscenter[1] << ", " << masscenter[2];
 
     PointTypeXYZRGB point1,point2;
@@ -349,11 +309,48 @@ void MainWindow::on_bt_setpointorigin_clicked()
     point2.y=0;
     point2.z=0;
     pctrans->MovePointCloudFromTo(point1,point2);
-
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
-
 }
 
+// to move pointcloud to 0,0,0 position (for all pointclound in the opening folder)
+void MainWindow::on_actionSet_points_origin_whole_folder_triggered()
+{
+
+    int totalfiles = ui->plyfiles_treeWidget->topLevelItemCount();
+    qDebug() << "on_actionSet_points_origin_whole_folder_triggered totalfiles " << totalfiles;
+
+    if(totalfiles==0) return;
+
+    Eigen::Vector3f masscenter;
+    PointTypeXYZRGB point1,point2;
+    //bool saveresult;
+
+    for (int i = 0; i < totalfiles; ++i) // run through each image file show in the widget
+    {
+        QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(i);
+        QString filename = currentPlyDir + QDir::separator() + item->text(0); //concat ply filename path
+
+        if(pctrans->loadPLY(filename))
+        {
+            //pctrans->GetRawPointCloud();
+            masscenter = pctrans->CalculateMassCenterVoxel(0.2);
+
+            point1.x=masscenter[0];
+            point1.y=masscenter[1];
+            point1.z=masscenter[2];
+            point2.x=0;
+            point2.y=0;
+            point2.z=0;
+            pctrans->MovePointCloudFromTo(point1,point2);
+            qDebug() << filename << " size" << pctrans->GetRawPLYSize();
+
+            pctrans->savePLY(filename); //overwrite
+
+        }
+    }
+}
+
+//  ------------------------------------------------------------------------ //
 
 void MainWindow::on_bt_test1_clicked()
 {
@@ -384,48 +381,69 @@ void MainWindow::on_pushButton_3_clicked()
 }
 
 
+//  ------------------------------------------------------------------------ //
 
-void MainWindow::on_actionSet_points_origin_whole_folder_triggered()
+
+
+void MainWindow::on_bt_calchistogram_clicked()
+{
+    qDebug() << "on_bt_calchistogram_clicked "<< ui->comboBox_colormap->currentText();
+    //ui->comboBox_colormap->currentIndex()
+
+    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+
+    QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
+    QString filename = item->text(0).section('.',0,0);
+
+    ui->line_histnameimg->setText(filename);
+
+}
+
+
+void MainWindow::on_bt_savehistimg_clicked()
 {
 
-    int totalfiles = ui->plyfiles_treeWidget->topLevelItemCount();
-    qDebug() << "on_actionSet_points_origin_whole_folder_triggered totalfiles " << totalfiles;
+    QString filename = ui->line_prefiximg->text() + ui->line_histnameimg->text() + ui->line_postfiximg->text();
 
-    if(totalfiles==0)
-    {
-        return;
-    }
+    QString filepath_png = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + ".png";
+    QString filepath_txt = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + ".txt";
+    QString filepath_norm_ply = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + "_norm.ply";
+    QString filepath_scale_ply = currentPlyDir + QDir::separator() + "histograme" +  QDir::separator() + filename + "_scale.ply";
 
-    Eigen::Vector3f masscenter;
-    PointTypeXYZRGB point1,point2;
-    bool saveresult;
+    QDir dir(currentPlyDir + QDir::separator() + "histograme");
+    if (!dir.exists())
+        dir.mkpath(".");
 
-    for (int i = 0; i < totalfiles; ++i) // run through each image file show in the widget
-    {
-        QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(i);
-        QString filename = currentPlyDir + QDir::separator() + item->text(0); //concat ply filename path
+    std::cout << "histogram img filename " << filepath_png.toStdString() << std::endl;
 
-        if(pctrans->loadPLY(filename))
-        {
-            //pctrans->GetRawPointCloud();
-            masscenter = pctrans->CalculateMassCenterVoxel(0.2);
+    histcalc->SaveHistogrameLogTextFile(filepath_txt);
 
-            point1.x=masscenter[0];
-            point1.y=masscenter[1];
-            point1.z=masscenter[2];
-            point2.x=0;
-            point2.y=0;
-            point2.z=0;
-            pctrans->MovePointCloudFromTo(point1,point2);
-            qDebug() << filename << " size" << pctrans->GetRawPLYSize();
+    //histcalc->savePLY_cloud_norm(filepath_norm_ply);
+    //histcalc->savePLY_cloud_scale(filepath_scale_ply);
 
-            pctrans->savePLY(filename); //overwrite
+    histcalc->SaveHistogramImage(filepath_png.toStdString());
 
-        }
-
-
-
-    }
 
 
 }
+
+
+//  ------------------------------------------------------------------------ //
+
+
+
+void MainWindow::on_bt_histgraph1_clicked()
+{
+
+}
+
+void MainWindow::on_bt_histgraph2_clicked()
+{
+
+}
+
+
+
+//  ------------------------------------------------------------------------ //
+
+
