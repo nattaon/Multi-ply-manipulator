@@ -36,10 +36,10 @@ public:
 
 
     void Resetview();
-    void SetViewUp();
-    void SetViewDown();
-    void SetViewLeft();
-    void SetViewRight();
+    void RotateViewUp();
+    void RotateViewDown();
+    void RotateViewLeft();
+    void RotateViewRight();
     void ShowRawPointCloud(PointCloudXYZRGB::Ptr pc);
     void DrawPlane(pcl::ModelCoefficients::Ptr plane_coeff, std::string cloudname);
     void DrawPlane2(pcl::ModelCoefficients plane_coeff, std::string cloudname);

@@ -95,6 +95,7 @@ public:
     QPushButton *bt_zrot_plus;
     QPushButton *bt_zrot_minus;
     QCheckBox *checkBox_autocalchist;
+    QPushButton *bt_setcam_y_front;
     QWidget *tab_label;
     QPushButton *bt_test1;
     QPushButton *bt_test2;
@@ -208,7 +209,7 @@ public:
         bt_zrot->setGeometry(QRect(310, 240, 41, 25));
         label_press_o = new QLabel(tab_pointcloud);
         label_press_o->setObjectName(QStringLiteral("label_press_o"));
-        label_press_o->setGeometry(QRect(210, 160, 211, 20));
+        label_press_o->setGeometry(QRect(200, 125, 211, 20));
         label_pointcloud = new QLabel(tab_pointcloud);
         label_pointcloud->setObjectName(QStringLiteral("label_pointcloud"));
         label_pointcloud->setGeometry(QRect(420, 160, 101, 20));
@@ -260,10 +261,10 @@ public:
         line_outlier_stddist->setGeometry(QRect(360, 100, 21, 25));
         bt_outlierremove = new QPushButton(tab_pointcloud);
         bt_outlierremove->setObjectName(QStringLiteral("bt_outlierremove"));
-        bt_outlierremove->setGeometry(QRect(390, 100, 111, 25));
+        bt_outlierremove->setGeometry(QRect(410, 100, 111, 25));
         bt_setpointorigin = new QPushButton(tab_pointcloud);
         bt_setpointorigin->setObjectName(QStringLiteral("bt_setpointorigin"));
-        bt_setpointorigin->setGeometry(QRect(390, 130, 111, 25));
+        bt_setpointorigin->setGeometry(QRect(410, 130, 111, 25));
         bt_planeseg_2 = new QPushButton(tab_pointcloud);
         bt_planeseg_2->setObjectName(QStringLiteral("bt_planeseg_2"));
         bt_planeseg_2->setGeometry(QRect(440, 280, 81, 25));
@@ -304,6 +305,9 @@ public:
         checkBox_autocalchist->setObjectName(QStringLiteral("checkBox_autocalchist"));
         checkBox_autocalchist->setGeometry(QRect(400, 250, 121, 23));
         checkBox_autocalchist->setChecked(true);
+        bt_setcam_y_front = new QPushButton(tab_pointcloud);
+        bt_setcam_y_front->setObjectName(QStringLiteral("bt_setcam_y_front"));
+        bt_setcam_y_front->setGeometry(QRect(210, 160, 89, 20));
         tabWidget->addTab(tab_pointcloud, QString());
         tab_label = new QWidget();
         tab_label->setObjectName(QStringLiteral("tab_label"));
@@ -431,6 +435,7 @@ public:
         bt_zrot_plus->setText(QApplication::translate("MainWindow", "z +1", Q_NULLPTR));
         bt_zrot_minus->setText(QApplication::translate("MainWindow", "z -1", Q_NULLPTR));
         checkBox_autocalchist->setText(QApplication::translate("MainWindow", "Auto Calc Hist", Q_NULLPTR));
+        bt_setcam_y_front->setText(QApplication::translate("MainWindow", "Y dir=front", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_label), QApplication::translate("MainWindow", "Labelling", Q_NULLPTR));
         bt_test1->setText(QApplication::translate("MainWindow", "Test 1", Q_NULLPTR));

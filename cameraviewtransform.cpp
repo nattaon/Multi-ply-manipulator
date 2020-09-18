@@ -8,6 +8,7 @@ CameraviewTransform::CameraviewTransform()
     camera = viewer_input->getRenderWindow()->GetRenderers()->GetFirstRenderer()->GetActiveCamera();
 
     Resetview();
+    //viewer_input->setPosition(800,0);//window position
 
     viewer_input->addCoordinateSystem(3.0);
     //viewer_input->registerMouseCallback( &CameraviewTransform::mouse_callback_viewer_input, *this );
@@ -53,19 +54,19 @@ void CameraviewTransform::ShowRawPointCloud(PointCloudXYZRGB::Ptr pc)
     viewer_input->spinOnce();
 }
 
-void CameraviewTransform::SetViewUp()
+void CameraviewTransform::RotateViewUp()
 {
-    camera->Elevation(90.0);
+    camera->Elevation(90.0); //rotate camera
 }
-void CameraviewTransform::SetViewDown()
+void CameraviewTransform::RotateViewDown()
 {
     camera->Elevation(-90.0);
 }
-void CameraviewTransform::SetViewLeft()
+void CameraviewTransform::RotateViewLeft()
 {
     camera->Azimuth(-90.0);
 }
-void CameraviewTransform::SetViewRight()
+void CameraviewTransform::RotateViewRight()
 {
     camera->Azimuth(90.0);
 }

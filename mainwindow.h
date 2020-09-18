@@ -126,6 +126,7 @@ private slots:
     void on_bt_zrot_plus_clicked();
 
 
+    void on_bt_setcam_y_front_clicked();
 };
 
 #endif // MAINWINDOW_H

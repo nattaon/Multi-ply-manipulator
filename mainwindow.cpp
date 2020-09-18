@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     on_plyfiles_treeWidget_itemClicked(item,0); // call treeWidget_itemClicked(QTreeWidgetItem *item, int column)
     ui->plyfiles_treeWidget->setCurrentItem(item);
 
-    //to stretch the horizontal scrollbar
+    //to stretch the horizontal scrollbar, otherwise no scrollbar shown
     ui->plyfiles_treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->plyfiles_treeWidget->header()->setStretchLastSection(false);
 
@@ -99,7 +99,7 @@ void MainWindow::on_plyfiles_treeWidget_itemClicked(QTreeWidgetItem *item, int c
     {
         camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
         camview->Resetview();
-        camview->SetViewUp();
+        camview->RotateViewUp();
 
         int pointsize = pctrans->GetRawPLYSize();
         ui->label_in_pointsize->setText(QLocale(QLocale::English).toString(pointsize));//add comma to number
@@ -150,22 +150,22 @@ void MainWindow::on_bt_resetcam_clicked()
 }
 void MainWindow::on_bt_viewup_clicked()
 {
-    camview->SetViewUp();
+    camview->RotateViewUp();
 }
 
 void MainWindow::on_bt_viewdown_clicked()
 {
-    camview->SetViewDown();
+    camview->RotateViewDown();
 }
 
 void MainWindow::on_bt_viewleft_clicked()
 {
-    camview->SetViewLeft();
+    camview->RotateViewLeft();
 }
 
 void MainWindow::on_bt_viewright_clicked()
 {
-    camview->SetViewRight();
+    camview->RotateViewRight();
 }
 
 // // POINTCLOUD MANIPULATION ///
@@ -453,10 +453,12 @@ void MainWindow::on_bt_calchistogram_clicked()
     qDebug() << "on_bt_calchistogram_clicked "<< ui->comboBox_colormap->currentText();
     //ui->comboBox_colormap->currentIndex()
 
+
+
+    Eigen::Vector3f masscenter = pctrans->CalculateMassCenterVoxel(0.2);
+    std::cout << masscenter << std::endl;
+
     histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
-
-
-
 }
 
 
@@ -528,3 +530,9 @@ void MainWindow::on_bt_histgraph2_clicked()
 
 
 
+
+void MainWindow::on_bt_setcam_y_front_clicked()
+{
+    on_bt_resetcam_clicked();
+    on_bt_viewup_clicked();
+}

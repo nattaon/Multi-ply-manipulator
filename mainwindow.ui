@@ -359,8 +359,8 @@
      <widget class="QLabel" name="label_press_o">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>160</y>
+        <x>200</x>
+        <y>125</y>
         <width>211</width>
         <height>20</height>
        </rect>
@@ -586,7 +586,7 @@
      <widget class="QPushButton" name="bt_outlierremove">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>410</x>
         <y>100</y>
         <width>111</width>
         <height>25</height>
@@ -599,7 +599,7 @@
      <widget class="QPushButton" name="bt_setpointorigin">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>410</x>
         <y>130</y>
         <width>111</width>
         <height>25</height>
@@ -811,6 +811,19 @@
       </property>
       <property name="checked">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_setcam_y_front">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>160</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Y dir=front</string>
       </property>
      </widget>
     </widget>
