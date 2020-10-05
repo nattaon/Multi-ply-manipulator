@@ -1530,8 +1530,10 @@ CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filter
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/extract_indices.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter_indices.hpp
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/passthrough.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/statistical_outlier_removal.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/voxel_grid.hpp
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/passthrough.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/statistical_outlier_removal.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/voxel_grid.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/for_each_type.h
@@ -2385,8 +2387,10 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/extract_indices.hpp
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter.hpp
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter_indices.hpp
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/passthrough.hpp
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/statistical_outlier_removal.hpp
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/voxel_grid.hpp
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/passthrough.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/statistical_outlier_removal.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/voxel_grid.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/for_each_type.h
@@ -3852,8 +3856,10 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/extract_indices.hpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter.hpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter_indices.hpp
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/passthrough.hpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/statistical_outlier_removal.hpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/voxel_grid.hpp
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/passthrough.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/statistical_outlier_removal.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/filters/voxel_grid.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/for_each_type.h
@@ -4695,8 +4701,10 @@ CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/extract_indices.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter_indices.hpp
+CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/passthrough.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/statistical_outlier_removal.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/voxel_grid.hpp
+CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/passthrough.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/statistical_outlier_removal.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/filters/voxel_grid.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/for_each_type.h

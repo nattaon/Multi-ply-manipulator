@@ -25,6 +25,7 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl/filters/statistical_outlier_removal.h>
+#include <pcl/filters/passthrough.h>
 
 #include <pcl/features/moment_of_inertia_estimation.h>
 
@@ -59,6 +60,8 @@ public:
     Eigen::Vector3f CalculateMassCenter();
     Eigen::Vector3f CalculateMassCenterVoxel(double size);
     void MovePointCloudFromTo(PointTypeXYZRGB current_pos, PointTypeXYZRGB target_pos);
+    void PassthroughFilter(std::string axis, float min, float max);
+    void GetBounding(PointTypeXYZRGB &minpoint, PointTypeXYZRGB &maxpoint);
 
 private:
     PointCloudXYZRGB::Ptr pointcloud;

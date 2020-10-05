@@ -46,6 +46,9 @@ public:
 
     void DrawTextAtPoint(PointTypeXYZ point_position, double text_scale,
         double r, double g, double b, std::string drawtext, std::string cloudname);
+   // void DrawBoundingBox(PointTypeXYZRGB boxmin, PointTypeXYZRGB boxmax);
+    void DrawBoundingBox(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max);
+    void RemoveBoundingBox();
 
 private:
 

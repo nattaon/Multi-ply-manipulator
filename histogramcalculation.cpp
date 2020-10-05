@@ -124,7 +124,7 @@ QString HistogramCalculation::PointXYZtoQString(pcl::PointXYZ pt)
     return QString::number(pt.x)+","+QString::number(pt.y)+","+QString::number(pt.z);
 }
 
-void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex)
+void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex, int &imgwidth, int &imgheight)
 {
     if(pointcloud->width == 0)
     {
@@ -162,6 +162,8 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     int img_width = (int)round(boundingsize.x *100);
     int img_height = (int)round(boundingsize.z *100);
 
+    imgwidth = img_width+1; //for return img size value
+    imgheight = img_height+1;
     std::cout << "Image size " << img_width+1 << "*" << img_height+1 << std::endl;
     histogram_log.append("image w*h size "+QString::number(img_width+1)+" * "+QString::number(img_height+1)+"\n");
 

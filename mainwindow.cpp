@@ -195,7 +195,7 @@ void MainWindow::on_bt_xrot_minus_clicked()
     pctrans->ApplyRotation(-1.0,rotation_vector_x);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     if(ui->checkBox_autocalchist->isChecked())
-        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+        on_bt_calchistogram_clicked();
 }
 
 void MainWindow::on_bt_xrot_plus_clicked()
@@ -203,7 +203,7 @@ void MainWindow::on_bt_xrot_plus_clicked()
     pctrans->ApplyRotation(1.0,rotation_vector_x);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     if(ui->checkBox_autocalchist->isChecked())
-        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+        on_bt_calchistogram_clicked();
 }
 
 void MainWindow::on_bt_yrot_minus_clicked()
@@ -211,7 +211,7 @@ void MainWindow::on_bt_yrot_minus_clicked()
     pctrans->ApplyRotation(-1.0,rotation_vector_y);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     if(ui->checkBox_autocalchist->isChecked())
-        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+        on_bt_calchistogram_clicked();
 }
 
 void MainWindow::on_bt_yrot_plus_clicked()
@@ -219,7 +219,7 @@ void MainWindow::on_bt_yrot_plus_clicked()
     pctrans->ApplyRotation(1.0,rotation_vector_y);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     if(ui->checkBox_autocalchist->isChecked())
-        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+        on_bt_calchistogram_clicked();
 }
 
 void MainWindow::on_bt_zrot_minus_clicked()
@@ -227,14 +227,14 @@ void MainWindow::on_bt_zrot_minus_clicked()
     pctrans->ApplyRotation(-1.0,rotation_vector_z);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     if(ui->checkBox_autocalchist->isChecked())
-        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+        on_bt_calchistogram_clicked();
 }
 void MainWindow::on_bt_zrot_plus_clicked()
 {
     pctrans->ApplyRotation(1.0,rotation_vector_z);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
     if(ui->checkBox_autocalchist->isChecked())
-        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+        on_bt_calchistogram_clicked();
 }
 
 
@@ -450,15 +450,17 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_bt_calchistogram_clicked()
 {
-    qDebug() << "on_bt_calchistogram_clicked "<< ui->comboBox_colormap->currentText();
+    //qDebug() << "\n on_bt_calchistogram_clicked, colormap:"<< ui->comboBox_colormap->currentText();
     //ui->comboBox_colormap->currentIndex()
 
 
 
-    Eigen::Vector3f masscenter = pctrans->CalculateMassCenterVoxel(0.2);
-    std::cout << masscenter << std::endl;
+    //Eigen::Vector3f masscenter = pctrans->CalculateMassCenterVoxel(0.2);
+    //std::cout << masscenter << std::endl;
+    int imgwidth,imgheight;
+    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight);
 
-    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex());
+    ui->label_in_imgsize->setText(QString::number(imgwidth)+"*"+QString::number(imgheight));
 }
 
 
@@ -535,4 +537,98 @@ void MainWindow::on_bt_setcam_y_front_clicked()
 {
     on_bt_resetcam_clicked();
     on_bt_viewup_clicked();
+}
+
+void MainWindow::on_bt_getboundary_clicked()
+{
+    PointTypeXYZRGB minpoint, maxpoint;
+
+    pctrans->GetBounding(minpoint, maxpoint);
+
+    qDebug() << "minpoint" << minpoint.x;
+    qDebug() << "maxpoint" << maxpoint.x;
+
+    ui->line_boundary_xmin->setText(QString::number(minpoint.x, 'f', 2));
+    ui->line_boundary_xmax->setText(QString::number(maxpoint.x, 'f', 2));
+
+    ui->line_boundary_ymin->setText(QString::number(minpoint.y, 'f', 2));
+    ui->line_boundary_ymax->setText(QString::number(maxpoint.y, 'f', 2));
+
+    ui->line_boundary_zmin->setText(QString::number(minpoint.z, 'f', 2));
+    ui->line_boundary_zmax->setText(QString::number(maxpoint.z, 'f', 2));
+
+    ui->line_boundary_xbound->setText(QString::number(maxpoint.x-minpoint.x, 'f', 2));
+    ui->line_boundary_ybound->setText(QString::number(maxpoint.y-minpoint.y, 'f', 2));
+    ui->line_boundary_zbound->setText(QString::number(maxpoint.z-minpoint.z, 'f', 2));
+
+    if(ui->checkBox_copytorange->isChecked())
+    {
+        ui->line_passthrough_xmin->setText(QString::number(minpoint.x, 'f', 2));
+        ui->line_passthrough_xmax->setText(QString::number(maxpoint.x, 'f', 2));
+
+        ui->line_passthrough_ymin->setText(QString::number(minpoint.y, 'f', 2));
+        ui->line_passthrough_ymax->setText(QString::number(maxpoint.y, 'f', 2));
+
+        ui->line_passthrough_zmin->setText(QString::number(minpoint.z, 'f', 2));
+        ui->line_passthrough_zmax->setText(QString::number(maxpoint.z, 'f', 2));
+    }
+    if(ui->checkBox_showbounding->isChecked())
+    {
+        on_bt_show_bounding_clicked();
+    }
+}
+
+
+void MainWindow::on_bt_passthroughfilter_xyz_clicked()
+{
+    on_bt_passthroughfilter_x_clicked();
+    on_bt_passthroughfilter_y_clicked();
+    on_bt_passthroughfilter_z_clicked();
+
+}
+
+
+void MainWindow::on_bt_passthroughfilter_x_clicked()
+{
+    double xmin = ui->line_passthrough_xmin->text().toDouble();
+    double xmax = ui->line_passthrough_xmax->text().toDouble();
+    pctrans->PassthroughFilter("x",xmin,xmax);
+
+    camview->RemoveBoundingBox();
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    on_bt_getboundary_clicked();
+}
+void MainWindow::on_bt_passthroughfilter_y_clicked()
+{
+    double ymin = ui->line_passthrough_ymin->text().toDouble();
+    double ymax = ui->line_passthrough_ymax->text().toDouble();
+    pctrans->PassthroughFilter("y",ymin,ymax);
+
+    camview->RemoveBoundingBox();
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    on_bt_getboundary_clicked();
+}
+
+void MainWindow::on_bt_passthroughfilter_z_clicked()
+{
+    double zmin = ui->line_passthrough_zmin->text().toDouble();
+    double zmax = ui->line_passthrough_zmax->text().toDouble();
+    pctrans->PassthroughFilter("z",zmin,zmax);
+
+    camview->RemoveBoundingBox();
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    on_bt_getboundary_clicked();
+}
+
+
+void MainWindow::on_bt_show_bounding_clicked()
+{
+    double xmin = ui->line_passthrough_xmin->text().toDouble();
+    double xmax = ui->line_passthrough_xmax->text().toDouble();
+    double ymin = ui->line_passthrough_ymin->text().toDouble();
+    double ymax = ui->line_passthrough_ymax->text().toDouble();
+    double zmin = ui->line_passthrough_zmin->text().toDouble();
+    double zmax = ui->line_passthrough_zmax->text().toDouble();
+
+    camview->DrawBoundingBox(xmin,xmax,ymin,ymax,zmin,zmax);
 }

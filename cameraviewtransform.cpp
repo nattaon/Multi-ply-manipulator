@@ -115,4 +115,45 @@ void CameraviewTransform::DrawTextAtPoint(PointTypeXYZ point_position, double te
     viewer_input->spinOnce();
 }
 
+//void CameraviewTransform::DrawBoundingBox(PointTypeXYZRGB boxmin, PointTypeXYZRGB boxmax)
+void CameraviewTransform::DrawBoundingBox(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max)
+{/*
+       Eigen::Vector3f position(position_OBB.x, position_OBB.y, position_OBB.z);
+       Eigen::Quaternionf quat(rotational_matrix_OBB);
+
+       cout << "ButtonBoundingBoxPressed "<< position << endl;
+
+       double bb_xsize = max_point_OBB.x - min_point_OBB.x;
+       double bb_ysize = max_point_OBB.y - min_point_OBB.y;
+       double bb_zsize = max_point_OBB.z - min_point_OBB.z;
+       ui->label_bb_xsize->setText(QString::number(bb_xsize));
+       ui->label_bb_ysize->setText(QString::number(bb_ysize));
+       ui->label_bb_zsize->setText(QString::number(bb_zsize));
+
+       getActiveViewer(viewer_selecting)->removeShape("bounding box");
+       getActiveViewer(viewer_selecting)->addCube(position, quat,
+           max_point_OBB.x - min_point_OBB.x,
+           max_point_OBB.y - min_point_OBB.y,
+           max_point_OBB.z - min_point_OBB.z, "bounding box");
+       //getActiveViewer(viewer_selecting)->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 1.0, 1.0, 0.0, "bounding box"); //cannotset on polygonmesh
+       getActiveViewer(viewer_selecting)->setRepresentationToWireframeForAllActors(); // apply wireframe for all geometry
+       //Viewer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, "AABB");
+
+       getActiveViewer(viewer_selecting)->spinOnce();
+   */
+       viewer_input->removeShape("BoundingBox");
+       //viewer_input->addCube(boxmin.x, boxmax.x, boxmin.y, boxmax.y, boxmin.z, boxmax.z, 1.0, 0.0, 0.0, "BoundingBox", 0);
+       viewer_input->addCube(x_min, x_max, y_min, y_max, z_min, z_max, 1.0, 0.0, 0.0, "BoundingBox", 0);
+       viewer_input->setRepresentationToWireframeForAllActors();
+       //addCube (float x_min, float x_max, float y_min, float y_max, float z_min, float z_max, double r=1.0, double g=1.0, double b=1.0, const std::string &id="cube", int viewport=0)
+       viewer_input->spinOnce();
+
+}
+void CameraviewTransform::RemoveBoundingBox()
+{
+    viewer_input->removeShape("BoundingBox");
+    //viewer_input->spinOnce();
+
+}
+
 

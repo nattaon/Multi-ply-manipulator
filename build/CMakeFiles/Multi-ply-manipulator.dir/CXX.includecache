@@ -241,6 +241,8 @@ pcl/filters/extract_indices.h
 -
 pcl/filters/statistical_outlier_removal.h
 -
+pcl/filters/passthrough.h
+-
 pcl/features/moment_of_inertia_estimation.h
 -
 QObject
@@ -1870,6 +1872,12 @@ pcl/pcl_macros.h
 pcl/filters/filter_indices.h
 -
 
+/usr/include/pcl-1.8/pcl/filters/impl/passthrough.hpp
+pcl/filters/passthrough.h
+-
+pcl/common/io.h
+-
+
 /usr/include/pcl-1.8/pcl/filters/impl/statistical_outlier_removal.hpp
 pcl/filters/statistical_outlier_removal.h
 -
@@ -1884,6 +1892,12 @@ pcl/common/common.h
 pcl/common/io.h
 -
 pcl/filters/voxel_grid.h
+-
+
+/usr/include/pcl-1.8/pcl/filters/passthrough.h
+pcl/filters/filter_indices.h
+-
+pcl/filters/impl/passthrough.hpp
 -
 
 /usr/include/pcl-1.8/pcl/filters/statistical_outlier_removal.h

@@ -127,6 +127,14 @@ private slots:
 
 
     void on_bt_setcam_y_front_clicked();
+
+    void on_bt_getboundary_clicked();
+
+    void on_bt_passthroughfilter_x_clicked();
+    void on_bt_passthroughfilter_y_clicked();
+    void on_bt_passthroughfilter_z_clicked();
+    void on_bt_passthroughfilter_xyz_clicked();
+    void on_bt_show_bounding_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -359,6 +359,8 @@ Eigen::Vector3f PointcloudTransform::CalculateMassCenterVoxel(double size)
     feature_extractor.setInputCloud(cloud_filtered);
     feature_extractor.compute();
     feature_extractor.getMassCenter(mass_center);
+
+
     //feature_extractor.getEigenVectors(major_vector, middle_vector, minor_vector);
     //feature_extractor.getOBB(min_point_OBB, max_point_OBB, position_OBB, rotational_matrix_OBB);
 
@@ -383,4 +385,43 @@ void PointcloudTransform::MovePointCloudFromTo(PointTypeXYZRGB current_pos, Poin
 
 
 }
+void PointcloudTransform::GetBounding(PointTypeXYZRGB &minpoint, PointTypeXYZRGB &maxpoint)
+{
 
+    pcl::getMinMax3D(*pointcloud, minpoint, maxpoint);
+    cout << "minpoint = " << minpoint << endl;
+    cout << "maxpoint = " << maxpoint << endl;
+}
+
+void PointcloudTransform::PassthroughFilter( std::string axis, float min, float max)
+{
+
+    //cout << "filter " << axis << ":" << min << "," << max << endl;
+    if (max == 99 || min == 99)
+    {
+        //cout << "nofilter" << endl;
+        return;
+    }
+    PointCloudXYZRGB::Ptr cloud_filtered(new PointCloudXYZRGB);
+
+    pcl::PassThrough<PointTypeXYZRGB> pass;
+
+    pass.setInputCloud(pointcloud);
+    pass.setFilterFieldName(axis);
+    pass.setFilterLimits(min, max);
+    //pass.setFilterLimitsNegative (true);
+    pass.filter(*cloud_filtered);
+    //pcl::console::print_info("cloud_filtered sized : %d\n", cloud_filtered->size());
+
+    // cloud_filtered->size()==0 will cause error "vector subscript out of range"
+    if (cloud_filtered->size() != 0)
+    {
+        pcl::copyPointCloud(*cloud_filtered, *pointcloud);
+    }
+    else
+    {
+        //cout << "cloud_filtered->size()==0 " << endl;
+
+    }
+
+}
