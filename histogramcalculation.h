@@ -38,7 +38,7 @@ class HistogramCalculation
 public:
     HistogramCalculation();
     ~HistogramCalculation();
-    void CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex, int &imgwidth, int &imgheight);
+    void CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex, int &imgwidth, int &imgheight, int &maxdensity);
     void SaveHistogramImage(std::string filename);
 
     bool savePLY_cloud_norm(QString filename);
@@ -62,6 +62,7 @@ private:
     PointCloudXYZ::Ptr cloudxyz,cloud_norm,cloud_scale;
     QFile histogram_log_file;
     QString histogram_log;
+    int histogram_arr[3000][3000];
 
 
 };

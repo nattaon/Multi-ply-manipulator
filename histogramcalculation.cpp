@@ -124,7 +124,7 @@ QString HistogramCalculation::PointXYZtoQString(pcl::PointXYZ pt)
     return QString::number(pt.x)+","+QString::number(pt.y)+","+QString::number(pt.z);
 }
 
-void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex, int &imgwidth, int &imgheight)
+void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, int colormapindex, int &imgwidth, int &imgheight, int &maxdensity)
 {
     if(pointcloud->width == 0)
     {
@@ -162,13 +162,15 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     int img_width = (int)round(boundingsize.x *100);
     int img_height = (int)round(boundingsize.z *100);
 
-    imgwidth = img_width+1; //for return img size value
+
+    imgwidth = img_width+1; //pass by reference for return img size value
     imgheight = img_height+1;
     std::cout << "Image size " << img_width+1 << "*" << img_height+1 << std::endl;
     histogram_log.append("image w*h size "+QString::number(img_width+1)+" * "+QString::number(img_height+1)+"\n");
 
 
     // # 1. Normalize pointcloud to [0,1]
+    qDebug() << "# 1. Normalize pointcloud to [0,1]";
     pcl::copyPointCloud(*cloudxyz, *cloud_norm);
     for (size_t i = 0; i < cloud_norm->points.size(); ++i)
     {
@@ -178,6 +180,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     }
 
     // # 2. Scale pointcloud x and z to [0,img size]
+    qDebug() << "# 2. Scale pointcloud x and z to [0,img size]";
     pcl::copyPointCloud(*cloud_norm, *cloud_scale); // to keep int value of x and z as a pixel index
     for (size_t i = 0; i < cloud_scale->points.size (); ++i)
     {
@@ -187,28 +190,46 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     }
 
     // # 3. Create histogram_arr[][] to count density of each pixel
-    int histogram_arr[img_height+1][img_width+1]; // index 0,1,2,...,img_width   
+
+    qDebug() << "# 3-initialize. Create histogram_arr[][] to count density of each pixel";
+    //int histogram_arr[img_height+1][img_width+1]; // index 0,1,2,...,img_width
+
+    //int *histogram_arr = new int[imgwidth*imgheight];
+
+  /*   int** histogram_arr = new int*[img_height+1];
+     for(int i = 0; i < img_height+1; ++i)
+      histogram_arr[i] = new int[img_width+1];
+        for(int j= 0; j< img_width+1; j++)
+        {
+          histogram_arr[i][j]=0; // initialize histogram_arr
+        }*/
+
+    qDebug() << "# 3-int histogram_arr";
     for(int i= 0; i< img_height+1; i++)
       for(int j= 0; j< img_width+1; j++)
       {
         histogram_arr[i][j]=0; // initialize histogram_arr
       }
 
+    qDebug() << "# 3-count. Create histogram_arr[][] to count density of each pixel";
     int pixel_x, pixel_y, max_density=0;
     for (size_t i = 0; i < cloud_scale->points.size() ; ++i)
     {
+      //std::cout << i << std::endl;
       pixel_x = (int)cloud_scale->points[i].x;
       pixel_y = (int)cloud_scale->points[i].z;
       histogram_arr[pixel_y][pixel_x]++; // accumulate point that fall into a particular pixel
+      //std::cout << histogram_arr[pixel_y][pixel_x] << std::endl;
 
       // save the max density
       if ( histogram_arr[pixel_y][pixel_x] > max_density)
+      { //std::cout << i << ": max_density=" << histogram_arr[pixel_y][pixel_x] << std::endl;
         max_density = histogram_arr[pixel_y][pixel_x];
-
+      }
     }
     std::cout << "max_density=" << (int)max_density << std::endl;
     histogram_log.append("max_density "+QString::number(max_density)+"\n");
-
+    maxdensity=max_density;//pass by reference
 
 
     //int sum_density=cloud_scale->points.size(); // = all point?
@@ -270,6 +291,12 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     shownimage = histimg_color.clone();
 
     histimg_color.release();
+
+    /*for(int i = 0; i < img_height+1; i++) {
+        delete [] histogram_arr[i];
+    }
+    delete [] histogram_arr;*/
+
 
 }
 

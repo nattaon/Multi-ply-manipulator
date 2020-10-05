@@ -20,8 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //Show list of ply files
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
     //currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
-    currentPlyDir = QString("../ply").arg(QDir::separator());
+    //currentPlyDir = QString("../ply").arg(QDir::separator());
+    //currentPlyDir="/home/nattaon/ply/beike-ply";
+    currentPlyDir="/home/nattaon/ply/color_ply0all";
     ui->line_plyfoldername->setText(currentPlyDir);
+
     ListPlyInFolder();
 
     // auto select first index + show pointcloud
@@ -34,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->plyfiles_treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->plyfiles_treeWidget->header()->setStretchLastSection(false);
 
+    //int *histogram_arr = new int[1500*1500];
 
 }
 MainWindow::~MainWindow()
@@ -131,9 +135,11 @@ void MainWindow::on_plyfiles_treeWidget_itemSelectionChanged()
 
 void MainWindow::on_bt_saveply_clicked()
 {
-
     QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
-    QString suggestionname = currentPlyDir + QDir::separator() + item->text(0); //concat ply filename path
+    QString filename_noext = item->text(0).section('.',0,0);
+    QString postfix = ui->line_postfix_ply->text();
+
+    QString suggestionname = currentPlyDir + QDir::separator() + filename_noext + postfix + ".ply"; //concat ply filename path
     QString filename = QFileDialog::getSaveFileName(this, tr ("Save .ply"), suggestionname, tr ("Pointcloud file(*.ply)"));
 
     //PCL_INFO("File chosen: %s\n", filename.toStdString().c_str ());
@@ -457,10 +463,11 @@ void MainWindow::on_bt_calchistogram_clicked()
 
     //Eigen::Vector3f masscenter = pctrans->CalculateMassCenterVoxel(0.2);
     //std::cout << masscenter << std::endl;
-    int imgwidth,imgheight;
-    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight);
+    int imgwidth,imgheight,maxdensity;
+    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
 
     ui->label_in_imgsize->setText(QString::number(imgwidth)+"*"+QString::number(imgheight));
+    ui->label_in_maxdensity->setText(QString::number(maxdensity));
 }
 
 

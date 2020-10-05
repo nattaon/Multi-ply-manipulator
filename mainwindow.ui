@@ -129,11 +129,16 @@
      <widget class="QPushButton" name="bt_saveply">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>10</y>
+        <x>540</x>
+        <y>15</y>
         <width>71</width>
-        <height>25</height>
+        <height>20</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Save PLY</string>
@@ -1614,13 +1619,18 @@
       <property name="geometry">
        <rect>
         <x>550</x>
-        <y>370</y>
+        <y>371</y>
         <width>91</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>000*000</string>
+       <string>0000*0000</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_imgsize">
@@ -1655,6 +1665,73 @@
       </property>
       <property name="checked">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line_postfix_ply">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>15</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>_a</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_postfix_2">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>0</y>
+        <width>51</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>postfix</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_maxdensity">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>350</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Max density :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_in_maxdensity">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>351</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>000</string>
       </property>
      </widget>
     </widget>

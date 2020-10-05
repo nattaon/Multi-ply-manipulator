@@ -24,7 +24,7 @@ void CameraviewTransform::Resetview()
     viewer_input->setSize(500, 500);
     viewer_input->setPosition(800,0);//window position
 
-    camera->SetParallelProjection(1);
+    //camera->SetParallelProjection(1);
     //0=perspective (wider view), 1=orthogonal with clippping (narrow view..)
 }
 CameraviewTransform::~CameraviewTransform()
