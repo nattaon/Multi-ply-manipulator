@@ -1545,6 +1545,7 @@ CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/impl/p
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/boost.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/file_io.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/pcd_io.hpp
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/point_cloud_image_extractors.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/vtk_lib_io.hpp
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/lzf.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/pcd_io.h
@@ -1553,6 +1554,8 @@ CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/ply
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply_parser.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/ply_io.h
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/png_io.h
+CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/point_cloud_image_extractors.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/io/vtk_lib_io.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/flann.h
 CMakeFiles/Multi-ply-manipulator.dir/main.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/impl/kdtree_flann.hpp
@@ -2402,6 +2405,7 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/boost.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/file_io.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/pcd_io.hpp
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/point_cloud_image_extractors.hpp
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/vtk_lib_io.hpp
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/lzf.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/pcd_io.h
@@ -2410,6 +2414,8 @@ CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply_parser.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/ply_io.h
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/png_io.h
+CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/point_cloud_image_extractors.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/vtk_lib_io.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/flann.h
 CMakeFiles/Multi-ply-manipulator.dir/mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/impl/kdtree_flann.hpp
@@ -3871,6 +3877,7 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/boost.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/file_io.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/pcd_io.hpp
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/point_cloud_image_extractors.hpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/vtk_lib_io.hpp
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/lzf.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/pcd_io.h
@@ -3879,6 +3886,8 @@ CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply_parser.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/ply_io.h
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/png_io.h
+CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/point_cloud_image_extractors.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/io/vtk_lib_io.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/flann.h
 CMakeFiles/Multi-ply-manipulator.dir/moc_mainwindow.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/impl/kdtree_flann.hpp
@@ -4715,11 +4724,14 @@ CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/impl/point_types.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/boost.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/file_io.h
+CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/impl/point_cloud_image_extractors.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/byte_order.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/io_operators.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/ply/ply_parser.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/ply_io.h
+CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/png_io.h
+CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/io/point_cloud_image_extractors.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/flann.h
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/impl/kdtree_flann.hpp
 CMakeFiles/Multi-ply-manipulator.dir/pointcloudtransform.cpp.o: /usr/include/pcl-1.8/pcl/kdtree/kdtree.h

@@ -135,6 +135,8 @@ private slots:
     void on_bt_passthroughfilter_z_clicked();
     void on_bt_passthroughfilter_xyz_clicked();
     void on_bt_show_bounding_clicked();
+    void on_bt_savepointcloudimg_clicked();
+    void on_bt_reload_clicked();
 };
 
 #endif // MAINWINDOW_H

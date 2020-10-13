@@ -21,8 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
     //currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
     //currentPlyDir = QString("../ply").arg(QDir::separator());
-    //currentPlyDir="/home/nattaon/ply/beike-ply";
-    currentPlyDir="/home/nattaon/ply/color_ply0all";
+    currentPlyDir="/home/nattaon/ply/beike-ply";
+    //currentPlyDir="/home/nattaon/ply/color_ply0all";
     ui->line_plyfoldername->setText(currentPlyDir);
 
     ListPlyInFolder();
@@ -38,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->plyfiles_treeWidget->header()->setStretchLastSection(false);
 
     //int *histogram_arr = new int[1500*1500];
+
+    ui->comboBox_colormap->setCurrentIndex(7); // [7]PlasmaMod
 
 }
 MainWindow::~MainWindow()
@@ -112,10 +114,13 @@ void MainWindow::on_plyfiles_treeWidget_itemClicked(QTreeWidgetItem *item, int c
         QString filename_noext = item->text(0).section('.',0,0);
         ui->line_histnameimg->setText(filename_noext);
 
+        ui->line_prefiximg->setText("");
         ui->line_postfiximg->setText("");
 
 
         qDebug() << "is_dense " << pctrans->GetRawPointCloud()->is_dense;
+
+        on_bt_calchistogram_clicked();//show histogram
     }
 
 }
@@ -140,11 +145,19 @@ void MainWindow::on_bt_saveply_clicked()
     QString postfix = ui->line_postfix_ply->text();
 
     QString suggestionname = currentPlyDir + QDir::separator() + filename_noext + postfix + ".ply"; //concat ply filename path
-    QString filename = QFileDialog::getSaveFileName(this, tr ("Save .ply"), suggestionname, tr ("Pointcloud file(*.ply)"));
+    //QString filename = QFileDialog::getSaveFileName(this, tr ("Save .ply"), suggestionname, tr ("Pointcloud file(*.ply)"));
 
     //PCL_INFO("File chosen: %s\n", filename.toStdString().c_str ());
+    if(QFile::exists(suggestionname))
+    {
+        QMessageBox::information(this, "File exist!", suggestionname+" is exist.");
+    }
+    else
+    {
+        bool saveresult = pctrans->savePLY(suggestionname);
+        qDebug() <<  saveresult <<" : Save "<< suggestionname ;
+    }
 
-    bool saveresult = pctrans->savePLY(filename);
 }
 
 
@@ -181,6 +194,8 @@ void MainWindow::on_bt_xrot_clicked()
     double rotate_x = ui->line_x_rot->text().toDouble();
     pctrans->ApplyRotation(rotate_x,rotation_vector_x);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    if(ui->checkBox_autocalchist->isChecked())
+        on_bt_calchistogram_clicked();
 }
 
 void MainWindow::on_bt_yrot_clicked()
@@ -188,6 +203,8 @@ void MainWindow::on_bt_yrot_clicked()
     double rotate_y = ui->line_y_rot->text().toDouble();
     pctrans->ApplyRotation(rotate_y,rotation_vector_y);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    if(ui->checkBox_autocalchist->isChecked())
+        on_bt_calchistogram_clicked();
 }
 
 void MainWindow::on_bt_zrot_clicked()
@@ -195,6 +212,8 @@ void MainWindow::on_bt_zrot_clicked()
     double rotate_z = ui->line_z_rot->text().toDouble();
     pctrans->ApplyRotation(rotate_z,rotation_vector_z);
     camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    if(ui->checkBox_autocalchist->isChecked())
+        on_bt_calchistogram_clicked();
 }
 void MainWindow::on_bt_xrot_minus_clicked()
 {
@@ -526,8 +545,49 @@ void MainWindow::on_bt_histgraph1_clicked()
 
 }
 
-void MainWindow::on_bt_histgraph2_clicked()
+void MainWindow::on_bt_histgraph2_clicked() // loop create slightly rotation of histogram map
 {
+    int imgwidth,imgheight,maxdensity;
+    QString path_histograme_img = currentPlyDir + QDir::separator() + "histograme";
+    QString path_histograme_log = currentPlyDir + QDir::separator() + "histo_log";
+
+    float rotVariation[4] = {-2.0, -1.0, 1.0, 2.0};
+
+    QString rotyName[4] = {"_y-2", "_y-1", "_y01", "_y02"};
+    for(int i =0; i<sizeof(rotVariation) / sizeof(rotVariation[0]);i++)
+    {
+        pctrans->ReloadPLY();
+        pctrans->ApplyRotation(rotVariation[i],rotation_vector_y);
+        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
+        QString filepath_png = path_histograme_img +  QDir::separator() + ui->line_histnameimg->text() + rotyName[i] + ".png";
+        QString filepath_txt = path_histograme_log +  QDir::separator() + ui->line_histnameimg->text() + rotyName[i] + ".txt";
+        histcalc->SaveHistogramImage(filepath_png.toStdString());
+        //histcalc->SaveHistogrameLogTextFile(filepath_txt);
+    }
+
+    QString rotxName[4] = {"_x-2", "_x-1", "_x01", "_x02"};
+    for(int i =0; i<sizeof(rotVariation) / sizeof(rotVariation[0]);i++)
+    {
+        pctrans->ReloadPLY();
+        pctrans->ApplyRotation(rotVariation[i],rotation_vector_x);
+        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
+        QString filepath_png = path_histograme_img +  QDir::separator() + ui->line_histnameimg->text() + rotxName[i] + ".png";
+        QString filepath_txt = path_histograme_log +  QDir::separator() + ui->line_histnameimg->text() + rotxName[i] + ".txt";
+        histcalc->SaveHistogramImage(filepath_png.toStdString());
+        //histcalc->SaveHistogrameLogTextFile(filepath_txt);
+    }
+
+    QString rotzName[4] = {"_z-2", "_z-1", "_z01", "_z02"};
+    for(int i =0; i<sizeof(rotVariation) / sizeof(rotVariation[0]);i++)
+    {
+        pctrans->ReloadPLY();
+        pctrans->ApplyRotation(rotVariation[i],rotation_vector_z);
+        histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
+        QString filepath_png = path_histograme_img +  QDir::separator() + ui->line_histnameimg->text() + rotzName[i] + ".png";
+        QString filepath_txt = path_histograme_log +  QDir::separator() + ui->line_histnameimg->text() + rotzName[i] + ".txt";
+        histcalc->SaveHistogramImage(filepath_png.toStdString());
+        //histcalc->SaveHistogrameLogTextFile(filepath_txt);
+    }
 
 }
 
@@ -638,4 +698,73 @@ void MainWindow::on_bt_show_bounding_clicked()
     double zmax = ui->line_passthrough_zmax->text().toDouble();
 
     camview->DrawBoundingBox(xmin,xmax,ymin,ymax,zmin,zmax);
+}
+
+void MainWindow::on_bt_savepointcloudimg_clicked()
+{
+    QString filename = ui->line_prefiximg->text() + ui->line_histnameimg->text() + ui->line_postfiximg->text();
+    QString path_pointcloud_img = currentPlyDir + QDir::separator() + "pointcloudimg";
+
+    QDir dir;
+    dir = QDir(path_pointcloud_img);
+    if (!dir.exists())
+        dir.mkpath(".");
+
+
+
+    QString filepath_png = path_pointcloud_img +  QDir::separator() + filename + ".png";
+
+
+    //std::cout << "histogram img filename " << filepath_png.toStdString() << std::endl;
+
+    // check if file exist
+    if(QFile::exists(filepath_png))
+    {
+
+        QMessageBox msgBox;
+        msgBox.setText("File name "+filepath_png+" is exist.");
+        msgBox.setInformativeText("Do you want to overwrite?");
+        msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+        msgBox.setDefaultButton(QMessageBox::No);
+        int ret = msgBox.exec();
+
+        switch (ret) {
+          case QMessageBox::Yes:
+              camview->SaveViewerScreenShot(filepath_png.toStdString());
+              break;
+          case QMessageBox::No:
+              // Don't Save was clicked
+              break;
+          default:
+              // should never be reached
+              break;
+        }
+
+    }
+    else
+    {
+        camview->SaveViewerScreenShot(filepath_png.toStdString());
+    }
+
+
+}
+
+void MainWindow::on_bt_reload_clicked()
+{
+    pctrans->ReloadPLY();
+    camview->ShowRawPointCloud(pctrans->GetRawPointCloud());
+    camview->Resetview();
+    camview->RotateViewUp();
+
+    int pointsize = pctrans->GetRawPLYSize();
+    ui->label_in_pointsize->setText(QLocale(QLocale::English).toString(pointsize));//add comma to number
+
+    //QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
+    //QString filename_noext = item->text(0).section('.',0,0);
+    //ui->line_histnameimg->setText(filename_noext);
+
+    ui->line_prefiximg->setText("");
+    ui->line_postfiximg->setText("");
+
+    on_bt_calchistogram_clicked(); //show histogram
 }

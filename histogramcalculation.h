@@ -52,7 +52,7 @@ public:
     QString PointXYZtoQString(pcl::PointXYZ pt);
     void SaveHistogrameLogTextFile(QString filename);
 
-    enum ColormapEnum { Magma, Inferno, Plasma , Viridis, Cividis, Parula, JetMod};
+    enum ColormapEnum { Magma, Inferno, Plasma , Viridis, Cividis, Parula, JetMod, PlasmaMod, ViridisMod, CividisMod};
 
 
 private:

@@ -3,6 +3,7 @@
 PointcloudTransform::PointcloudTransform()
 {
     //pointcloud initialize
+    loadpointcloud.reset(new PointCloudXYZRGB);
     pointcloud.reset(new PointCloudXYZRGB);
 }
 
@@ -17,7 +18,12 @@ bool PointcloudTransform::loadPLY(QString filename)// load to PointCloudXYZRGB::
         PCL_ERROR("Error reading point cloud %s\n", filename.toStdString().c_str());
         return false;
       }
+    pcl::copyPointCloud(*pointcloud, *loadpointcloud);
     return true;
+}
+void PointcloudTransform::ReloadPLY()
+{
+    pcl::copyPointCloud(*loadpointcloud, *pointcloud); // copy A to B
 }
 
 bool PointcloudTransform::savePLY(QString filename)// save PointCloudXYZRGB::Ptr pointcloud
@@ -424,4 +430,28 @@ void PointcloudTransform::PassthroughFilter( std::string axis, float min, float 
 
     }
 
+}
+
+void PointcloudTransform::SavePointCloudImage(std::string filename)
+{
+    //pcl::io::savePNGFile(filename, *pointcloud);  //  Image width exceeds user limit in IHDR libpng error: Invalid IHDR data
+
+    pcl::io::savePNGFile(filename,*pointcloud,"intensity"); // need to be an organized pointcloud
+
+   /*
+    pcl::PCLImage image;
+
+    //PointCloud<PointXYZRGB> cloud;
+    //fromPCLPointCloud2 (*pointcloud, cloud);
+
+    pcl::io::PointCloudImageExtractorFromRGBField<PointCloudXYZRGB> pcie;
+    //pcie.setColorMode(pcie.COLORS_RGB_RANDOM);
+
+    bool success = pcie.extract(pointcloud, image);
+    std::cout << "success : " << success;
+
+    if(success)
+        pcl::io::saveImage (filename, image);
+
+    */
 }

@@ -49,6 +49,7 @@ public:
    // void DrawBoundingBox(PointTypeXYZRGB boxmin, PointTypeXYZRGB boxmax);
     void DrawBoundingBox(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max);
     void RemoveBoundingBox();
+    void SaveViewerScreenShot(std::string filename);
 
 private:
 

@@ -70,6 +70,9 @@ void HistogramCalculation::SetColormap(int colorindex)
         case 4 : cmaptype=Cividis; break;
         case 5 : cmaptype=Parula; break;
         case 6 : cmaptype=JetMod; break;
+        case 7 : cmaptype=PlasmaMod; break;
+        case 8 : cmaptype=ViridisMod; break;
+        case 9 : cmaptype=CividisMod; break;
     }
 }
 QString HistogramCalculation::GetColorname(int colorindex)
@@ -83,6 +86,9 @@ QString HistogramCalculation::GetColorname(int colorindex)
         case 4 : return "Cividis"; break;
         case 5 : return "Parula"; break;
         case 6 : return "JetMod"; break;
+        case 7 : return "PlasmaMod"; break;
+        case 8 : return "ViridisMod"; break;
+        case 9 : return "CividisMod"; break;
     }
 }
 
@@ -98,6 +104,9 @@ float HistogramCalculation::GetColormap(int index, int rgb)
         case Cividis: return colormap.CividisColormap[index][rgb]; break;
         case Parula : return colormap.ParulaColormap[index][rgb]; break;
         case JetMod : return colormap.JetModColormap[index][rgb]; break;
+        case PlasmaMod: return colormap.PlasmaModColormap[index][rgb]; break;
+        case ViridisMod: return colormap.ViridisModColormap[index][rgb];   break;
+        case CividisMod: return colormap.CividisModColormap[index][rgb]; break;
     }
 }
 
@@ -170,7 +179,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
 
 
     // # 1. Normalize pointcloud to [0,1]
-    qDebug() << "# 1. Normalize pointcloud to [0,1]";
+    //qDebug() << "# 1. Normalize pointcloud to [0,1]";
     pcl::copyPointCloud(*cloudxyz, *cloud_norm);
     for (size_t i = 0; i < cloud_norm->points.size(); ++i)
     {
@@ -180,7 +189,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     }
 
     // # 2. Scale pointcloud x and z to [0,img size]
-    qDebug() << "# 2. Scale pointcloud x and z to [0,img size]";
+    //qDebug() << "# 2. Scale pointcloud x and z to [0,img size]";
     pcl::copyPointCloud(*cloud_norm, *cloud_scale); // to keep int value of x and z as a pixel index
     for (size_t i = 0; i < cloud_scale->points.size (); ++i)
     {
@@ -191,7 +200,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
 
     // # 3. Create histogram_arr[][] to count density of each pixel
 
-    qDebug() << "# 3-initialize. Create histogram_arr[][] to count density of each pixel";
+    //qDebug() << "# 3-initialize. Create histogram_arr[][] to count density of each pixel";
     //int histogram_arr[img_height+1][img_width+1]; // index 0,1,2,...,img_width
 
     //int *histogram_arr = new int[imgwidth*imgheight];
@@ -204,14 +213,14 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
           histogram_arr[i][j]=0; // initialize histogram_arr
         }*/
 
-    qDebug() << "# 3-int histogram_arr";
+    //qDebug() << "# 3-int histogram_arr";
     for(int i= 0; i< img_height+1; i++)
       for(int j= 0; j< img_width+1; j++)
       {
         histogram_arr[i][j]=0; // initialize histogram_arr
       }
 
-    qDebug() << "# 3-count. Create histogram_arr[][] to count density of each pixel";
+    //qDebug() << "# 3-count. Create histogram_arr[][] to count density of each pixel";
     int pixel_x, pixel_y, max_density=0;
     for (size_t i = 0; i < cloud_scale->points.size() ; ++i)
     {

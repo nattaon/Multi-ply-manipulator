@@ -5,6 +5,8 @@
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/io/ply_io.h>
+#include <pcl/io/png_io.h>
+#include <pcl/io/point_cloud_image_extractors.h>
 
 #include <pcl/common/common_headers.h>
 #include <pcl/common/common.h>
@@ -40,6 +42,7 @@ class PointcloudTransform
 public:
     PointcloudTransform();
     bool loadPLY(QString filename);
+    void ReloadPLY();
     bool savePLY(QString filename);
     int GetRawPLYSize();
     PointCloudXYZRGB::Ptr GetRawPointCloud();
@@ -62,9 +65,10 @@ public:
     void MovePointCloudFromTo(PointTypeXYZRGB current_pos, PointTypeXYZRGB target_pos);
     void PassthroughFilter(std::string axis, float min, float max);
     void GetBounding(PointTypeXYZRGB &minpoint, PointTypeXYZRGB &maxpoint);
+    void SavePointCloudImage(std::string filename);
 
 private:
-    PointCloudXYZRGB::Ptr pointcloud;
+    PointCloudXYZRGB::Ptr loadpointcloud, pointcloud;
     PointCloudXYZRGB::Ptr pointcloud_inlierplane_manual;
     pcl::ModelCoefficients::Ptr coefficients;
     pcl::PointIndices::Ptr inliers;

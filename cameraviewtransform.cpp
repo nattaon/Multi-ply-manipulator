@@ -156,4 +156,10 @@ void CameraviewTransform::RemoveBoundingBox()
 
 }
 
+void CameraviewTransform::SaveViewerScreenShot(std::string filename)
+{
+    viewer_input->saveScreenshot(filename);
+
+}
+
 
