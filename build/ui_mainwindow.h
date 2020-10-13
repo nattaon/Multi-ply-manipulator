@@ -36,6 +36,7 @@ public:
     QAction *actionSelect_ply_folder;
     QAction *actionSelect_img_folder;
     QAction *actionSet_points_origin_whole_folder;
+    QAction *actionCalc_Hist_xyz_all;
     QWidget *centralWidget;
     QTabWidget *tabWidget;
     QWidget *tab_pointcloud;
@@ -168,6 +169,8 @@ public:
         actionSelect_img_folder->setObjectName(QStringLiteral("actionSelect_img_folder"));
         actionSet_points_origin_whole_folder = new QAction(MainWindow);
         actionSet_points_origin_whole_folder->setObjectName(QStringLiteral("actionSet_points_origin_whole_folder"));
+        actionCalc_Hist_xyz_all = new QAction(MainWindow);
+        actionCalc_Hist_xyz_all->setObjectName(QStringLiteral("actionCalc_Hist_xyz_all"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -684,6 +687,7 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionSelect_img_folder);
         menuPointcloud->addAction(actionSet_points_origin_whole_folder);
+        menuHistogramImg->addAction(actionCalc_Hist_xyz_all);
 
         retranslateUi(MainWindow);
 
@@ -699,6 +703,7 @@ public:
         actionSelect_ply_folder->setText(QApplication::translate("MainWindow", "Select ply folder", Q_NULLPTR));
         actionSelect_img_folder->setText(QApplication::translate("MainWindow", "Select img folder", Q_NULLPTR));
         actionSet_points_origin_whole_folder->setText(QApplication::translate("MainWindow", "Set points origin whole folder", Q_NULLPTR));
+        actionCalc_Hist_xyz_all->setText(QApplication::translate("MainWindow", "Calc Hist xyz variation all", Q_NULLPTR));
         bt_openplyfolder->setText(QApplication::translate("MainWindow", "Open this folder", Q_NULLPTR));
         QTreeWidgetItem *___qtreewidgetitem = plyfiles_treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Filename", Q_NULLPTR));

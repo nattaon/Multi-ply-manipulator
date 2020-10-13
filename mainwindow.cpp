@@ -21,7 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
     //currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
     //currentPlyDir = QString("../ply").arg(QDir::separator());
-    currentPlyDir="/home/nattaon/ply/beike-ply";
+    //currentPlyDir="/home/nattaon/ply/beike-ply";
+    currentPlyDir="/home/okuboali/nattaon_ws/_0room_dataset/beike/beike-ply/aligned";
     //currentPlyDir="/home/nattaon/ply/color_ply0all";
     ui->line_plyfoldername->setText(currentPlyDir);
 
@@ -111,7 +112,7 @@ void MainWindow::on_plyfiles_treeWidget_itemClicked(QTreeWidgetItem *item, int c
         ui->label_in_pointsize->setText(QLocale(QLocale::English).toString(pointsize));//add comma to number
 
         //QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
-        QString filename_noext = item->text(0).section('.',0,0);
+        filename_noext = item->text(0).section('.',0,0);
         ui->line_histnameimg->setText(filename_noext);
 
         ui->line_prefiximg->setText("");
@@ -141,7 +142,7 @@ void MainWindow::on_plyfiles_treeWidget_itemSelectionChanged()
 void MainWindow::on_bt_saveply_clicked()
 {
     QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
-    QString filename_noext = item->text(0).section('.',0,0);
+    //QString filename_noext = item->text(0).section('.',0,0);
     QString postfix = ui->line_postfix_ply->text();
 
     QString suggestionname = currentPlyDir + QDir::separator() + filename_noext + postfix + ".ply"; //concat ply filename path
@@ -551,6 +552,14 @@ void MainWindow::on_bt_histgraph2_clicked() // loop create slightly rotation of 
     QString path_histograme_img = currentPlyDir + QDir::separator() + "histograme";
     QString path_histograme_log = currentPlyDir + QDir::separator() + "histo_log";
 
+    //original
+    pctrans->ReloadPLY();
+    histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
+    QString filepath_png = path_histograme_img +  QDir::separator() + filename_noext + "_00" + ".png";
+    QString filepath_txt = path_histograme_log +  QDir::separator() + filename_noext + "_00" + ".txt";
+    histcalc->SaveHistogramImage(filepath_png.toStdString());
+    histcalc->SaveHistogrameLogTextFile(filepath_txt);
+
     float rotVariation[4] = {-2.0, -1.0, 1.0, 2.0};
 
     QString rotyName[4] = {"_y-2", "_y-1", "_y01", "_y02"};
@@ -559,8 +568,8 @@ void MainWindow::on_bt_histgraph2_clicked() // loop create slightly rotation of 
         pctrans->ReloadPLY();
         pctrans->ApplyRotation(rotVariation[i],rotation_vector_y);
         histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
-        QString filepath_png = path_histograme_img +  QDir::separator() + ui->line_histnameimg->text() + rotyName[i] + ".png";
-        QString filepath_txt = path_histograme_log +  QDir::separator() + ui->line_histnameimg->text() + rotyName[i] + ".txt";
+        QString filepath_png = path_histograme_img +  QDir::separator() + filename_noext + rotyName[i] + ".png";
+        QString filepath_txt = path_histograme_log +  QDir::separator() + filename_noext + rotyName[i] + ".txt";
         histcalc->SaveHistogramImage(filepath_png.toStdString());
         //histcalc->SaveHistogrameLogTextFile(filepath_txt);
     }
@@ -571,8 +580,8 @@ void MainWindow::on_bt_histgraph2_clicked() // loop create slightly rotation of 
         pctrans->ReloadPLY();
         pctrans->ApplyRotation(rotVariation[i],rotation_vector_x);
         histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
-        QString filepath_png = path_histograme_img +  QDir::separator() + ui->line_histnameimg->text() + rotxName[i] + ".png";
-        QString filepath_txt = path_histograme_log +  QDir::separator() + ui->line_histnameimg->text() + rotxName[i] + ".txt";
+        QString filepath_png = path_histograme_img +  QDir::separator() + filename_noext + rotxName[i] + ".png";
+        QString filepath_txt = path_histograme_log +  QDir::separator() + filename_noext + rotxName[i] + ".txt";
         histcalc->SaveHistogramImage(filepath_png.toStdString());
         //histcalc->SaveHistogrameLogTextFile(filepath_txt);
     }
@@ -583,8 +592,8 @@ void MainWindow::on_bt_histgraph2_clicked() // loop create slightly rotation of 
         pctrans->ReloadPLY();
         pctrans->ApplyRotation(rotVariation[i],rotation_vector_z);
         histcalc->CalculateHistogram(pctrans->GetRawPointCloud(),ui->comboBox_colormap->currentIndex(),imgwidth,imgheight,maxdensity);
-        QString filepath_png = path_histograme_img +  QDir::separator() + ui->line_histnameimg->text() + rotzName[i] + ".png";
-        QString filepath_txt = path_histograme_log +  QDir::separator() + ui->line_histnameimg->text() + rotzName[i] + ".txt";
+        QString filepath_png = path_histograme_img +  QDir::separator() + filename_noext + rotzName[i] + ".png";
+        QString filepath_txt = path_histograme_log +  QDir::separator() + filename_noext + rotzName[i] + ".txt";
         histcalc->SaveHistogramImage(filepath_png.toStdString());
         //histcalc->SaveHistogrameLogTextFile(filepath_txt);
     }
@@ -767,4 +776,38 @@ void MainWindow::on_bt_reload_clicked()
     ui->line_postfiximg->setText("");
 
     on_bt_calchistogram_clicked(); //show histogram
+}
+
+void MainWindow::on_actionCalc_Hist_xyz_all_triggered()
+{
+
+    int totalfiles = ui->plyfiles_treeWidget->topLevelItemCount();
+    qDebug() << "on_actionCalc_Hist_xyz_all_triggered totalfiles " << totalfiles;
+
+    if(totalfiles==0) return;
+
+    QString path_histograme_img = currentPlyDir + QDir::separator() + "histograme";
+    QString path_histograme_log = currentPlyDir + QDir::separator() + "histo_log";
+    QDir dir;
+    dir = QDir(path_histograme_img);
+    if (!dir.exists())
+        dir.mkpath(".");
+
+    dir = QDir(path_histograme_log);
+    if (!dir.exists())
+        dir.mkpath(".");
+
+    for (int i = 0; i < totalfiles; ++i) // run through each image file show in the widget
+    {
+        QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(i);
+        QString filename = currentPlyDir + QDir::separator() + item->text(0); //concat ply filename path
+
+        if(pctrans->loadPLY(filename))
+        {
+            filename_noext = item->text(0).section('.',0,0);
+
+            on_bt_histgraph2_clicked();
+
+        }
+    }
 }

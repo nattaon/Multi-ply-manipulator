@@ -2054,6 +2054,7 @@
     <property name="title">
      <string>HistogramImg</string>
     </property>
+    <addaction name="actionCalc_Hist_xyz_all"/>
    </widget>
    <widget class="QMenu" name="menuLabelImg">
     <property name="title">
@@ -2093,6 +2094,11 @@
   <action name="actionSet_points_origin_whole_folder">
    <property name="text">
     <string>Set points origin whole folder</string>
+   </property>
+  </action>
+  <action name="actionCalc_Hist_xyz_all">
+   <property name="text">
+    <string>Calc Hist xyz variation all</string>
    </property>
   </action>
  </widget>
