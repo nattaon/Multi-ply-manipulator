@@ -22,8 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //currentPlyDir = QString("%1home%1nattaon%1ply%1OriginalPointCloud").arg(QDir::separator());
     //currentPlyDir = QString("../ply").arg(QDir::separator());
     //currentPlyDir="/home/nattaon/ply/beike-ply";
-    currentPlyDir="/home/okuboali/nattaon_ws/_0room_dataset/beike/beike-ply/aligned";
+    //currentPlyDir="/home/okuboali/nattaon_ws/_0room_dataset/beike/beike-ply/aligned";
     //currentPlyDir="/home/nattaon/ply/color_ply0all";
+    currentPlyDir="/home/nattaon/ply/aligned-sceneNN-voxel";
+    currentPlyDir="/home/nattaon/ply/OriginalPointCloud";  //standford+pablo
     ui->line_plyfoldername->setText(currentPlyDir);
 
     ListPlyInFolder();
@@ -147,7 +149,7 @@ void MainWindow::on_bt_saveply_clicked()
 
     QString suggestionname = currentPlyDir + QDir::separator() + filename_noext + postfix + ".ply"; //concat ply filename path
     //QString filename = QFileDialog::getSaveFileName(this, tr ("Save .ply"), suggestionname, tr ("Pointcloud file(*.ply)"));
-
+/*
     //PCL_INFO("File chosen: %s\n", filename.toStdString().c_str ());
     if(QFile::exists(suggestionname))
     {
@@ -158,6 +160,42 @@ void MainWindow::on_bt_saveply_clicked()
         bool saveresult = pctrans->savePLY(suggestionname);
         qDebug() <<  saveresult <<" : Save "<< suggestionname ;
     }
+ */
+    // check if file exist
+    bool saveresult;
+    if(QFile::exists(suggestionname))
+    {
+
+        QMessageBox msgBox;
+        msgBox.setText("File name "+suggestionname+" is exist.");
+        msgBox.setInformativeText("Do you want to overwrite?");
+        msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+        msgBox.setDefaultButton(QMessageBox::No);
+
+        int ret = msgBox.exec();
+        switch (ret)
+        {
+          case QMessageBox::Yes:
+            saveresult = pctrans->savePLY(suggestionname);
+            qDebug() <<  saveresult <<" : Save "<< suggestionname;
+              break;
+
+          case QMessageBox::No:
+              // Don't Save was clicked
+              break;
+
+          default:
+              // should never be reached
+              break;
+        }
+
+    }
+    else
+    {
+        saveresult = pctrans->savePLY(suggestionname);
+        qDebug() <<  saveresult <<" : Save "<< suggestionname ;
+    }
+
 
 }
 
@@ -807,6 +845,30 @@ void MainWindow::on_actionCalc_Hist_xyz_all_triggered()
             filename_noext = item->text(0).section('.',0,0);
 
             on_bt_histgraph2_clicked();
+
+        }
+    }
+}
+
+void MainWindow::on_actionVoxel_grid_all_triggered()
+{
+    int totalfiles = ui->plyfiles_treeWidget->topLevelItemCount();
+    qDebug() << "on_actionVoxel_grid_all_triggered totalfiles " << totalfiles;
+
+    for (int i = 0; i < totalfiles; ++i) // run through each image file show in the widget
+    {
+        QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(i);
+        QString filename = currentPlyDir + QDir::separator() + item->text(0); //concat ply filename path
+
+        if(pctrans->loadPLY(filename))
+        {
+
+            double grid_size = ui->line_voxelfilter->text().toDouble();
+            pctrans->FilterVoxelSize(grid_size);
+            pctrans->savePLY(filename); //overwrite
+
+
+
 
         }
     }

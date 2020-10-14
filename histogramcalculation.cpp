@@ -4,7 +4,7 @@
 HistogramCalculation::HistogramCalculation()
 {
     cv::namedWindow( "Histogram image", cv::WINDOW_AUTOSIZE );// Create a window for display.
-    cv::moveWindow("Histogram image", 500,500);
+    cv::moveWindow("Histogram image", 0,0);
     shownimage = cv::Mat(100, 100, CV_8UC3, cv::Scalar(0,0,0));
     black_img = cv::Mat(100, 100, CV_8UC3, cv::Scalar(0,0,0));
     histogram_log= "";

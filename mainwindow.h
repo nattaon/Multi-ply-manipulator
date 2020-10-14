@@ -139,6 +139,7 @@ private slots:
     void on_bt_savepointcloudimg_clicked();
     void on_bt_reload_clicked();
     void on_actionCalc_Hist_xyz_all_triggered();
+    void on_actionVoxel_grid_all_triggered();
 };
 
 #endif // MAINWINDOW_H
