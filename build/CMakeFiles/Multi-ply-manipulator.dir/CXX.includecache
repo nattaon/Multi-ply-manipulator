@@ -55,6 +55,8 @@ QtWidgets/QMenuBar
 -
 QtWidgets/QPushButton
 -
+QtWidgets/QRadioButton
+-
 QtWidgets/QStatusBar
 -
 QtWidgets/QTabWidget
@@ -5682,6 +5684,10 @@ qmessagebox.h
 qpushbutton.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QRadioButton
+qradiobutton.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qradiobutton.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStatusBar
 qstatusbar.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstatusbar.h
@@ -5909,6 +5915,12 @@ QtWidgets/qdialog.h
 -
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qabstractbutton.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qradiobutton.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qabstractbutton.h

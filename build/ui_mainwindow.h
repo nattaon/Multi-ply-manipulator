@@ -22,6 +22,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolBar>
@@ -131,6 +132,8 @@ public:
     QLabel *label_in_maxdensity;
     QPushButton *bt_savepointcloudimg;
     QPushButton *bt_reload;
+    QRadioButton *radioButton_bg_black;
+    QRadioButton *radioButton_bg_white;
     QWidget *tab;
     QPushButton *bt_planeseg_2;
     QLabel *label_planecoef_in;
@@ -189,7 +192,7 @@ public:
         line_plyfoldername->setGeometry(QRect(140, 10, 351, 25));
         plyfiles_treeWidget = new QTreeWidget(tab_pointcloud);
         plyfiles_treeWidget->setObjectName(QStringLiteral("plyfiles_treeWidget"));
-        plyfiles_treeWidget->setGeometry(QRect(10, 60, 191, 371));
+        plyfiles_treeWidget->setGeometry(QRect(10, 90, 191, 341));
         plyfiles_treeWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         plyfiles_treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         plyfiles_treeWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
@@ -607,6 +610,12 @@ public:
         bt_reload = new QPushButton(tab_pointcloud);
         bt_reload->setObjectName(QStringLiteral("bt_reload"));
         bt_reload->setGeometry(QRect(210, 70, 61, 25));
+        radioButton_bg_black = new QRadioButton(tab_pointcloud);
+        radioButton_bg_black->setObjectName(QStringLiteral("radioButton_bg_black"));
+        radioButton_bg_black->setGeometry(QRect(10, 60, 81, 23));
+        radioButton_bg_white = new QRadioButton(tab_pointcloud);
+        radioButton_bg_white->setObjectName(QStringLiteral("radioButton_bg_white"));
+        radioButton_bg_white->setGeometry(QRect(100, 60, 81, 23));
         tabWidget->addTab(tab_pointcloud, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -817,6 +826,8 @@ public:
         label_in_maxdensity->setText(QApplication::translate("MainWindow", "000", Q_NULLPTR));
         bt_savepointcloudimg->setText(QApplication::translate("MainWindow", "Save pointcloud.png", Q_NULLPTR));
         bt_reload->setText(QApplication::translate("MainWindow", "Reload", Q_NULLPTR));
+        radioButton_bg_black->setText(QApplication::translate("MainWindow", "bg black", Q_NULLPTR));
+        radioButton_bg_white->setText(QApplication::translate("MainWindow", "bg white", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         bt_planeseg_2->setText(QApplication::translate("MainWindow", "PlaneSeg2", Q_NULLPTR));
         label_planecoef_in->setText(QApplication::translate("MainWindow", "plan coef", Q_NULLPTR));

@@ -171,7 +171,20 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     int img_width = (int)round(boundingsize.x *100);
     int img_height = (int)round(boundingsize.z *100);
 
-
+    // if ratio width:height >10 ignore this data
+/*    if(img_width > img_height)
+        if (img_width > img_height*10)
+        {
+            printf("Ratio is more than 10, ignore this data ");
+            return;
+        }
+    else if(img_width < img_height)
+        if (img_width*10 < img_height)
+        {
+            printf("Ratio is more than 10, ignore this data ");
+            return;
+        }
+*/
     imgwidth = img_width+1; //pass by reference for return img size value
     imgheight = img_height+1;
     std::cout << "Image size " << img_width+1 << "*" << img_height+1 << std::endl;
@@ -179,7 +192,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
 
 
     // # 1. Normalize pointcloud to [0,1]
-    //qDebug() << "# 1. Normalize pointcloud to [0,1]";
+    qDebug() << "# 1. Normalize pointcloud to [0,1]";
     pcl::copyPointCloud(*cloudxyz, *cloud_norm);
     for (size_t i = 0; i < cloud_norm->points.size(); ++i)
     {
@@ -189,7 +202,7 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
     }
 
     // # 2. Scale pointcloud x and z to [0,img size]
-    //qDebug() << "# 2. Scale pointcloud x and z to [0,img size]";
+    qDebug() << "# 2. Scale pointcloud x and z to [0,img size]";
     pcl::copyPointCloud(*cloud_norm, *cloud_scale); // to keep int value of x and z as a pixel index
     for (size_t i = 0; i < cloud_scale->points.size (); ++i)
     {
@@ -213,14 +226,14 @@ void HistogramCalculation::CalculateHistogram(PointCloudXYZRGB::Ptr pointcloud, 
           histogram_arr[i][j]=0; // initialize histogram_arr
         }*/
 
-    //qDebug() << "# 3-int histogram_arr";
+    qDebug() << "# 3-int histogram_arr";
     for(int i= 0; i< img_height+1; i++)
       for(int j= 0; j< img_width+1; j++)
       {
         histogram_arr[i][j]=0; // initialize histogram_arr
       }
 
-    //qDebug() << "# 3-count. Create histogram_arr[][] to count density of each pixel";
+    qDebug() << "# 3-count. Create histogram_arr[][] to count density of each pixel";
     int pixel_x, pixel_y, max_density=0;
     for (size_t i = 0; i < cloud_scale->points.size() ; ++i)
     {

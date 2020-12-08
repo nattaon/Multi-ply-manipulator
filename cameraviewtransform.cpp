@@ -17,10 +17,23 @@ CameraviewTransform::CameraviewTransform()
     time.start();
 
 }
+void CameraviewTransform::SetBGColorWhite()
+{
+    viewer_input->setBackgroundColor (1, 1, 1);
+    isbgblack = false;
+}
+void CameraviewTransform::SetBGColorBlack()
+{
+    viewer_input->setBackgroundColor (0, 0,0);
+    isbgblack = true;
+}
 void CameraviewTransform::Resetview()
 {
     viewer_input->initCameraParameters();
-    viewer_input->setBackgroundColor(0, 0, 0);
+
+    if(isbgblack) SetBGColorBlack();
+    else SetBGColorWhite();
+
     viewer_input->setSize(500, 500);
     viewer_input->setPosition(800,0);//window position
 

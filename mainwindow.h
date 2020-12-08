@@ -140,6 +140,8 @@ private slots:
     void on_bt_reload_clicked();
     void on_actionCalc_Hist_xyz_all_triggered();
     void on_actionVoxel_grid_all_triggered();
+    void on_radioButton_bg_black_clicked();
+    void on_radioButton_bg_white_clicked();
 };
 
 #endif // MAINWINDOW_H

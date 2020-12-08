@@ -16,6 +16,18 @@ MainWindow::MainWindow(QWidget *parent) :
     rotation_vector_y = Eigen::Matrix<float, 1, 3>(0.0, 1.0, 0.0);
     rotation_vector_z = Eigen::Matrix<float, 1, 3>(0.0, 0.0, 1.0);
 
+    on_radioButton_bg_black_clicked();
+
+
+    int A[4] = {0, 2, 3, 1};
+    const int N = sizeof(A) / sizeof(int);
+    std::cout << "A " << A << std::endl;
+    std::cout << "N " << N << std::endl;
+
+    std::cout << "Index of max element: "
+         << std::distance(A, std::max_element(A, A + N))
+         << std::endl;
+
 
     //Show list of ply files
     //currentlyOpenedDir ="/home/okuboali/nattaon_ws/_0room_dataset/nattaon_edited_sceneNN/rotated";
@@ -24,8 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //currentPlyDir="/home/nattaon/ply/beike-ply";
     //currentPlyDir="/home/okuboali/nattaon_ws/_0room_dataset/beike/beike-ply/aligned";
     //currentPlyDir="/home/nattaon/ply/color_ply0all";
-    currentPlyDir="/home/nattaon/ply/aligned-sceneNN-voxel";
-    currentPlyDir="/home/nattaon/ply/OriginalPointCloud";  //standford+pablo
+    //currentPlyDir="/home/nattaon/ply/aligned-sceneNN-voxel";
+    //currentPlyDir="/home/nattaon/data_room_ply/aligned-sceneNN-voxel-01";  //standford+pablo
+    //currentPlyDir="/home/nattaon/data_room_ply/Stanford_ply_voxel05";
+    currentPlyDir="/home/nattaon/github/Structured3D";
     ui->line_plyfoldername->setText(currentPlyDir);
 
     ListPlyInFolder();
@@ -33,8 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // auto select first index + show pointcloud
     currentSelectingPlyIndex=0;
     QTreeWidgetItem *item = ui->plyfiles_treeWidget->topLevelItem(currentSelectingPlyIndex);
-    on_plyfiles_treeWidget_itemClicked(item,0); // call treeWidget_itemClicked(QTreeWidgetItem *item, int column)
-    ui->plyfiles_treeWidget->setCurrentItem(item);
+    //on_plyfiles_treeWidget_itemClicked(item,0); // call treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+    //ui->plyfiles_treeWidget->setCurrentItem(item);
 
     //to stretch the horizontal scrollbar, otherwise no scrollbar shown
     ui->plyfiles_treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -123,7 +137,7 @@ void MainWindow::on_plyfiles_treeWidget_itemClicked(QTreeWidgetItem *item, int c
 
         qDebug() << "is_dense " << pctrans->GetRawPointCloud()->is_dense;
 
-        on_bt_calchistogram_clicked();//show histogram
+        //on_bt_calchistogram_clicked();//show histogram
     }
 
 }
@@ -205,6 +219,7 @@ void MainWindow::on_bt_saveply_clicked()
 void MainWindow::on_bt_resetcam_clicked()
 {
     camview->Resetview();
+
 }
 void MainWindow::on_bt_viewup_clicked()
 {
@@ -481,6 +496,8 @@ void MainWindow::on_actionSet_points_origin_whole_folder_triggered()
 
 void MainWindow::on_bt_test1_clicked()
 {
+    camview->SetBGColorWhite();
+
     //QTime timecounter;
     //timecounter.start();
 
@@ -872,4 +889,18 @@ void MainWindow::on_actionVoxel_grid_all_triggered()
 
         }
     }
+}
+
+void MainWindow::on_radioButton_bg_black_clicked()
+{
+    camview->SetBGColorBlack();
+    ui->radioButton_bg_black->setChecked(true);
+    ui->radioButton_bg_white->setChecked(false);
+}
+
+void MainWindow::on_radioButton_bg_white_clicked()
+{
+    camview->SetBGColorWhite();
+    ui->radioButton_bg_white->setChecked(true);
+    ui->radioButton_bg_black->setChecked(false);
 }

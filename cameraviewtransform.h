@@ -34,7 +34,8 @@ public:
     void timerEvent(QTimerEvent *event);
     void mouse_callback_viewer_input( const pcl::visualization::MouseEvent& event, void* );
 
-
+    void SetBGColorWhite();
+    void SetBGColorBlack();
     void Resetview();
     void RotateViewUp();
     void RotateViewDown();
@@ -51,6 +52,7 @@ public:
     void RemoveBoundingBox();
     void SaveViewerScreenShot(std::string filename);
 
+
 private:
 
     boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer_input;
@@ -58,6 +60,7 @@ private:
 
     QTime time;
     int timerId;
+    bool isbgblack=true;
 
 
 };
