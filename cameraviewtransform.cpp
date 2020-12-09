@@ -162,6 +162,34 @@ void CameraviewTransform::DrawBoundingBox(float x_min, float x_max, float y_min,
        viewer_input->spinOnce();
 
 }
+
+void CameraviewTransform::DrawOBB(PointTypeXYZRGB position_OBB, PointTypeXYZRGB min_point_OBB, PointTypeXYZRGB max_point_OBB, Eigen::Matrix3f rotational_matrix_OBB)
+{
+    Eigen::Vector3f position(position_OBB.x, position_OBB.y, position_OBB.z);
+    Eigen::Quaternionf quat(rotational_matrix_OBB);
+
+    auto euler = quat.toRotationMatrix().eulerAngles(0, 1, 2);
+    std::cout << "Euler from quaternion in roll, pitch, yaw"<< std::endl << euler[0]*180/M_PI<< std::endl << euler[1]*180/M_PI<< std::endl<< euler[2]*180/M_PI<< std::endl;
+
+    viewer_input->removeShape("OBB");
+    viewer_input->addCube(position, quat, max_point_OBB.x - min_point_OBB.x, max_point_OBB.y - min_point_OBB.y, max_point_OBB.z - min_point_OBB.z, "OBB");
+    viewer_input->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, "OBB");
+    viewer_input->spinOnce();
+
+}
+void CameraviewTransform::DrawSphere(PointTypeXYZRGB position, float rad, std::string name)
+{
+    viewer_input->removeShape(name);
+    viewer_input->addSphere (position, rad, 0.5, 0.5, 0.0, name);
+
+}
+void CameraviewTransform::DrawLine(PointTypeXYZ p1, PointTypeXYZ p2, std::string name)
+{
+    viewer_input->removeShape(name);
+    viewer_input->addLine (p1, p2, 1, 0.1, 1, name);
+
+}
+
 void CameraviewTransform::RemoveBoundingBox()
 {
     viewer_input->removeShape("BoundingBox");

@@ -66,12 +66,21 @@ public:
     void PassthroughFilter(std::string axis, float min, float max);
     void GetBounding(PointTypeXYZRGB &minpoint, PointTypeXYZRGB &maxpoint);
     void SavePointCloudImage(std::string filename);
+    void PointcloudAlignAxis();
+
+    PointTypeXYZRGB min_point_AABB;
+    PointTypeXYZRGB max_point_AABB;
+    PointTypeXYZRGB min_point_OBB;
+    PointTypeXYZRGB max_point_OBB;
+    PointTypeXYZRGB position_OBB;
+    Eigen::Matrix3f rotational_matrix_OBB;
 
 private:
     PointCloudXYZRGB::Ptr loadpointcloud, pointcloud;
     PointCloudXYZRGB::Ptr pointcloud_inlierplane_manual;
     pcl::ModelCoefficients::Ptr coefficients;
     pcl::PointIndices::Ptr inliers;
+
 };
 
 #endif // POINTCLOUDTRANSFORM_H

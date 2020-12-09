@@ -327,6 +327,126 @@ void PointcloudTransform::StatisticalOutlierRemoval(int meank, double stddev)
 
 }
 
+
+void PointcloudTransform::PointcloudAlignAxis()
+{
+    pcl::VoxelGrid<PointTypeXYZRGB> grid;
+    double size = 0.05;
+    grid.setLeafSize(size, size, size);
+    grid.setInputCloud(pointcloud);
+    PointCloudXYZRGB::Ptr cloud_filtered(new PointCloudXYZRGB);
+    grid.filter(*cloud_filtered);
+
+    std::vector <float> moment_of_inertia;
+    std::vector <float> eccentricity;
+    float major_value, middle_value, minor_value;
+    Eigen::Vector3f major_vector, middle_vector, minor_vector;
+
+
+    pcl::MomentOfInertiaEstimation <PointTypeXYZRGB> feature_extractor;
+    feature_extractor.setInputCloud(cloud_filtered);
+    feature_extractor.compute();
+    //feature_extractor.getMomentOfInertia (moment_of_inertia);
+    //feature_extractor.getEccentricity (eccentricity);
+    //feature_extractor.getAABB (min_point_AABB, max_point_AABB);
+    //feature_extractor.getOBB(min_point_OBB, max_point_OBB, position_OBB, rotational_matrix_OBB);
+    feature_extractor.getEigenValues (major_value, middle_value, minor_value);
+    feature_extractor.getEigenVectors(major_vector, middle_vector, minor_vector);
+
+
+
+    std::cout << "value " << major_value << "," << middle_value << "," << minor_value << std::endl;
+    //std::cout << "major_vector " << major_vector << std::endl;
+    //std::cout << "middle_vector " << middle_vector << std::endl;
+    //std::cout << "minor_vector " << minor_vector << std::endl;
+    //std::cout << "rotational_matrix_OBB " << rotational_matrix_OBB << std::endl;
+
+    Eigen::Matrix<float, 1, 3> target_vector_x, target_vector_z;
+    Eigen::Matrix<float, 1, 3> pointcloud_vector = Eigen::Matrix<float, 1, 3>(major_vector[0], major_vector[1], major_vector[2]);
+
+    // 1. determine  x and z direction
+    int Quater_id=0;
+    if(major_vector[0] > 0 && major_vector[2] > 0)  // x+ z+
+    {
+        Quater_id=1;
+        target_vector_x = Eigen::Matrix<float, 1, 3>(1.0, 0.0, 0.0);
+        target_vector_z = Eigen::Matrix<float, 1, 3>(0.0, 0.0, 1.0);
+    }
+    else if(major_vector[0] > 0 && major_vector[2] < 0)  // x+ z-
+    {
+        Quater_id=2;
+        target_vector_x = Eigen::Matrix<float, 1, 3>(1.0, 0.0, 0.0);
+        target_vector_z = Eigen::Matrix<float, 1, 3>(0.0, 0.0, -1.0);
+    }
+    else if(major_vector[0] < 0 && major_vector[2] > 0)  // x- z+
+    {
+        Quater_id=3;
+        target_vector_x = Eigen::Matrix<float, 1, 3>(-1.0, 0.0, 0.0);
+        target_vector_z = Eigen::Matrix<float, 1, 3>(0.0, 0.0, 1.0);
+    }
+    else if(major_vector[0] < 0 && major_vector[2] < 0)  // x- z-
+    {
+        Quater_id=4;
+        target_vector_x = Eigen::Matrix<float, 1, 3>(-1.0, 0.0, 0.0);
+        target_vector_z = Eigen::Matrix<float, 1, 3>(0.0, 0.0, -1.0);
+    }
+
+    // 2. calculate direction to rotate (length=1)
+    float theta_to_x = acos(pointcloud_vector.dot(target_vector_x));
+    float theta_to_z = acos(pointcloud_vector.dot(target_vector_z));
+
+    std::cout << "pointcloud_vector: " << pointcloud_vector << std::endl;
+    std::cout << target_vector_x << " theta_to X: " << theta_to_x << " rad, " << theta_to_x*180/M_PI << " deg" << endl;
+    std::cout << target_vector_z << " theta_to Z: " << theta_to_z << " rad, " << theta_to_z*180/M_PI << " deg" << endl;
+
+    if(theta_to_x < theta_to_z)
+    {
+        if(Quater_id==1 || Quater_id==3) std::cout << "Suggest rotation on Y: +" ;
+        else if(Quater_id==2 || Quater_id==4) std::cout << "Suggest rotation on Y: -" ;
+        else std::cout << "Quater not in range!";
+
+        std::cout << theta_to_x*180/M_PI << std::endl;
+    }
+    else if(theta_to_x > theta_to_z)
+    {
+        if(Quater_id==2 || Quater_id==4) std::cout << "Suggest rotation on Y: +" ;
+        else if(Quater_id==1 || Quater_id==3) std::cout << "Suggest rotation on Y: -" ;
+        else std::cout << "Quater not in range!";
+
+        std::cout << theta_to_z*180/M_PI << std::endl;
+    }
+    else
+    {
+        std::cout << "ERROR theta_to_x = theta_to_z" << std::endl;
+    }
+
+    //std::cout << "min-max_point_OBB: " << min_point_OBB << max_point_OBB << std::endl;
+    //std::cout << "min-max_point_AABB: " << min_point_AABB << max_point_AABB << std::endl;
+
+    //Eigen::Matrix<float, 1, 3>  rotation_vector = pointcloud_vector.cross(target_vector);
+
+
+    //float length_target_vector = sqrt(pow(target_vector[0], 2) + pow(target_vector[1], 2) + pow(target_vector[2], 2));
+    //float length_pointcloud_vector =  sqrt(pow(pointcloud_vector[0], 2) + pow(pointcloud_vector[1], 2) + pow(pointcloud_vector[2], 2));
+
+    //std::cout << "pointcloud_vector: " << pointcloud_vector << " ,length=" << length_pointcloud_vector << std::endl;
+    //std::cout << "target_vector: " << target_vector << " ,length=" << length_target_vector << std::endl;
+
+
+    //float theta = acos(pointcloud_vector.dot(target_vector) / (length_target_vector*length_pointcloud_vector));
+
+    //Eigen::Affine3f transform = Eigen::Affine3f::Identity();
+    //transform.rotate(Eigen::AngleAxisf(theta, rotation_vector));
+
+    //cout << "Rotation Vector(perpendicular): " << rotation_vector << std::endl;
+    //cout << "theta=" << theta << " rad, " << theta*180/M_PI << " deg" << endl;
+
+
+    //transform.rotate(Eigen::AngleAxisf(rotate_angle*M_PI/180, rotation_axis));
+    //ApplyRotation(theta,)
+    //pcl::transformPointCloud(*pointcloud, *pointcloud, transform);
+}
+
 Eigen::Vector3f PointcloudTransform::CalculateMassCenter()
 {
 

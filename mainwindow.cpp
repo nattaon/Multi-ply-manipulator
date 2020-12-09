@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     rotation_vector_y = Eigen::Matrix<float, 1, 3>(0.0, 1.0, 0.0);
     rotation_vector_z = Eigen::Matrix<float, 1, 3>(0.0, 0.0, 1.0);
 
-    on_radioButton_bg_black_clicked();
+    on_radioButton_bg_white_clicked();
 
 
     int A[4] = {0, 2, 3, 1};
@@ -39,7 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //currentPlyDir="/home/nattaon/ply/aligned-sceneNN-voxel";
     //currentPlyDir="/home/nattaon/data_room_ply/aligned-sceneNN-voxel-01";  //standford+pablo
     //currentPlyDir="/home/nattaon/data_room_ply/Stanford_ply_voxel05";
-    currentPlyDir="/home/nattaon/github/Structured3D";
+    //currentPlyDir="/home/nattaon/github/Structured3D";
+    currentPlyDir="/home/nattaon/data_room_ply/floornet-ply";
     ui->line_plyfoldername->setText(currentPlyDir);
 
     ListPlyInFolder();
@@ -137,7 +138,8 @@ void MainWindow::on_plyfiles_treeWidget_itemClicked(QTreeWidgetItem *item, int c
 
         qDebug() << "is_dense " << pctrans->GetRawPointCloud()->is_dense;
 
-        //on_bt_calchistogram_clicked();//show histogram
+        on_bt_calchistogram_clicked();//show histogram
+        //on_bt_test2_clicked(); //show rotation guide
     }
 
 }
@@ -496,8 +498,18 @@ void MainWindow::on_actionSet_points_origin_whole_folder_triggered()
 
 void MainWindow::on_bt_test1_clicked()
 {
-    camview->SetBGColorWhite();
+    pctrans->PointcloudAlignAxis();
+    on_bt_test2_clicked();
+    //camview->DrawOBB(pctrans->position_OBB, pctrans->min_point_OBB, pctrans->max_point_OBB, pctrans->rotational_matrix_OBB);
+  /*
+    camview->DrawSphere(pctrans->min_point_AABB, 0.2, "min_point_AABB");
+    camview->DrawSphere(pctrans->max_point_AABB, 0.3, "max_point_AABB");
 
+    camview->DrawBoundingBox(pctrans->min_point_AABB.x, pctrans->max_point_AABB.x,
+                             pctrans->min_point_AABB.y, pctrans->max_point_AABB.y,
+                           pctrans->min_point_AABB.z, pctrans->max_point_AABB.z);
+
+        */
     //QTime timecounter;
     //timecounter.start();
 
@@ -509,14 +521,28 @@ void MainWindow::on_bt_test1_clicked()
 
 void MainWindow::on_bt_test2_clicked()
 {
+    PointTypeXYZ p1,p2;
+    p1.x=0; p1.y=0; p1.z=0;
 
-    //QTime timecounter;
-    //timecounter.start();
+    Eigen::Vector3f p2vec;
 
+    for(int deg =10;deg<81;deg+=10)
+    {
+        //cout << "azix pos at deg=" << deg <<" = " << 2*tan(deg*M_PI/180) <<endl;
+        p2vec[0]=1; p2vec[1]=0; p2vec[2]=tan(deg*M_PI/180);
+        p2vec.normalize();
+        p2vec*=4; //scale up the line
 
+        p2.x=p2vec[0]; p2.y=p2vec[1]; p2.z=p2vec[2];
 
-    //int nMilliseconds = timecounter.elapsed();
-    //cout << "CalculateMassCenterVoxel = "  << grid_size<< ", timer elapsed " << nMilliseconds << " msec" << endl;
+        camview->DrawLine(p1,p2,"line_left_up"+ std::to_string(deg));
+        p2.x*=-1;
+        camview->DrawLine(p1,p2,"line_right_up"+ std::to_string(deg));
+        p2.z*=-1;
+        camview->DrawLine(p1,p2,"line_right_down"+ std::to_string(deg));
+        p2.x*=-1;
+        camview->DrawLine(p1,p2,"line_left_down"+ std::to_string(deg));
+    }
 }
 
 void MainWindow::on_pushButton_3_clicked()

@@ -49,6 +49,9 @@ public:
         double r, double g, double b, std::string drawtext, std::string cloudname);
    // void DrawBoundingBox(PointTypeXYZRGB boxmin, PointTypeXYZRGB boxmax);
     void DrawBoundingBox(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max);
+    void DrawOBB(PointTypeXYZRGB position_OBB, PointTypeXYZRGB min_point_OBB, PointTypeXYZRGB max_point_OBB, Eigen::Matrix3f rotational_matrix_OBB);
+    void DrawSphere(PointTypeXYZRGB position, float rad, std::string name);
+    void DrawLine(PointTypeXYZ p1, PointTypeXYZ p2, std::string name);
     void RemoveBoundingBox();
     void SaveViewerScreenShot(std::string filename);
 
