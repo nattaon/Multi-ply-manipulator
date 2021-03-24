@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //currentPlyDir="/home/nattaon/data_room_ply/aligned-sceneNN-voxel-01";  //standford+pablo
     //currentPlyDir="/home/nattaon/data_room_ply/Stanford_ply_voxel05";
     //currentPlyDir="/home/nattaon/github/Structured3D";
-    currentPlyDir="/home/nattaon/data_room_ply/floornet-ply";
+    currentPlyDir="/home/nattaon/data_room_ply/scan2bim_PabloHouse/v02";
     ui->line_plyfoldername->setText(currentPlyDir);
 
     ListPlyInFolder();
@@ -137,8 +137,8 @@ void MainWindow::on_plyfiles_treeWidget_itemClicked(QTreeWidgetItem *item, int c
 
 
         qDebug() << "is_dense " << pctrans->GetRawPointCloud()->is_dense;
-
-        on_bt_calchistogram_clicked();//show histogram
+        if(ui->checkBox_autocalchist->isChecked())
+            on_bt_calchistogram_clicked();//show histogram
         //on_bt_test2_clicked(); //show rotation guide
     }
 
@@ -498,8 +498,9 @@ void MainWindow::on_actionSet_points_origin_whole_folder_triggered()
 
 void MainWindow::on_bt_test1_clicked()
 {
-    pctrans->PointcloudAlignAxis();
-    on_bt_test2_clicked();
+    //pctrans->PointcloudAlignAxis();
+    on_bt_setpointorigin_clicked();
+    show_rotation_guide_360();
     //camview->DrawOBB(pctrans->position_OBB, pctrans->min_point_OBB, pctrans->max_point_OBB, pctrans->rotational_matrix_OBB);
   /*
     camview->DrawSphere(pctrans->min_point_AABB, 0.2, "min_point_AABB");
@@ -518,8 +519,13 @@ void MainWindow::on_bt_test1_clicked()
     //int nMilliseconds = timecounter.elapsed();
     //cout << "CalculateMassCenter timer elapsed " << nMilliseconds << " msec" << endl;
 }
-
 void MainWindow::on_bt_test2_clicked()
+{
+    show_rotation_guide_360();
+}
+
+
+void MainWindow::show_rotation_guide_360()
 {
     PointTypeXYZ p1,p2;
     p1.x=0; p1.y=0; p1.z=0;
@@ -544,6 +550,8 @@ void MainWindow::on_bt_test2_clicked()
         camview->DrawLine(p1,p2,"line_left_down"+ std::to_string(deg));
     }
 }
+
+
 
 void MainWindow::on_pushButton_3_clicked()
 {
@@ -929,4 +937,26 @@ void MainWindow::on_radioButton_bg_white_clicked()
     camview->SetBGColorWhite();
     ui->radioButton_bg_white->setChecked(true);
     ui->radioButton_bg_black->setChecked(false);
+}
+
+void MainWindow::on_bt_apply_windowsize_clicked()
+{
+   int windown_new_w =  ui->line_windowsize_w->text().toInt();
+   int windown_new_h =  ui->line_windowsize_h->text().toInt();
+    camview->SetWindowViewSize(windown_new_w,windown_new_h);
+}
+
+void MainWindow::on_actionShow_xyz_axis_triggered()
+{
+    if(ui->actionShow_xyz_axis->isChecked())
+    {
+        qDebug() << "actionShow_xyz_axis is checked";
+        camview->AddCoordinateSystem();
+    }
+    else
+    {
+        qDebug() << "actionShow_xyz_axis uncheck";
+        camview->RemoveCoordinateSystem();
+    }
+
 }

@@ -39,6 +39,7 @@ public:
     QAction *actionSet_points_origin_whole_folder;
     QAction *actionCalc_Hist_xyz_all;
     QAction *actionVoxel_grid_all;
+    QAction *actionShow_xyz_axis;
     QWidget *centralWidget;
     QTabWidget *tabWidget;
     QWidget *tab_pointcloud;
@@ -134,6 +135,10 @@ public:
     QPushButton *bt_reload;
     QRadioButton *radioButton_bg_black;
     QRadioButton *radioButton_bg_white;
+    QLineEdit *line_windowsize_w;
+    QLineEdit *line_windowsize_h;
+    QPushButton *bt_apply_windowsize;
+    QLabel *label_windowsize;
     QWidget *tab;
     QPushButton *bt_planeseg_2;
     QLabel *label_planecoef_in;
@@ -177,6 +182,10 @@ public:
         actionCalc_Hist_xyz_all->setObjectName(QStringLiteral("actionCalc_Hist_xyz_all"));
         actionVoxel_grid_all = new QAction(MainWindow);
         actionVoxel_grid_all->setObjectName(QStringLiteral("actionVoxel_grid_all"));
+        actionShow_xyz_axis = new QAction(MainWindow);
+        actionShow_xyz_axis->setObjectName(QStringLiteral("actionShow_xyz_axis"));
+        actionShow_xyz_axis->setCheckable(true);
+        actionShow_xyz_axis->setChecked(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -192,7 +201,7 @@ public:
         line_plyfoldername->setGeometry(QRect(140, 10, 351, 25));
         plyfiles_treeWidget = new QTreeWidget(tab_pointcloud);
         plyfiles_treeWidget->setObjectName(QStringLiteral("plyfiles_treeWidget"));
-        plyfiles_treeWidget->setGeometry(QRect(10, 90, 191, 341));
+        plyfiles_treeWidget->setGeometry(QRect(10, 130, 191, 301));
         plyfiles_treeWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         plyfiles_treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         plyfiles_treeWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
@@ -616,6 +625,18 @@ public:
         radioButton_bg_white = new QRadioButton(tab_pointcloud);
         radioButton_bg_white->setObjectName(QStringLiteral("radioButton_bg_white"));
         radioButton_bg_white->setGeometry(QRect(100, 60, 81, 23));
+        line_windowsize_w = new QLineEdit(tab_pointcloud);
+        line_windowsize_w->setObjectName(QStringLiteral("line_windowsize_w"));
+        line_windowsize_w->setGeometry(QRect(10, 100, 41, 20));
+        line_windowsize_h = new QLineEdit(tab_pointcloud);
+        line_windowsize_h->setObjectName(QStringLiteral("line_windowsize_h"));
+        line_windowsize_h->setGeometry(QRect(60, 100, 41, 20));
+        bt_apply_windowsize = new QPushButton(tab_pointcloud);
+        bt_apply_windowsize->setObjectName(QStringLiteral("bt_apply_windowsize"));
+        bt_apply_windowsize->setGeometry(QRect(110, 100, 51, 20));
+        label_windowsize = new QLabel(tab_pointcloud);
+        label_windowsize->setObjectName(QStringLiteral("label_windowsize"));
+        label_windowsize->setGeometry(QRect(10, 80, 131, 23));
         tabWidget->addTab(tab_pointcloud, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -659,9 +680,13 @@ public:
         bt_test1 = new QPushButton(centralWidget);
         bt_test1->setObjectName(QStringLiteral("bt_test1"));
         bt_test1->setGeometry(QRect(500, 0, 41, 25));
+        QFont font9;
+        font9.setPointSize(5);
+        bt_test1->setFont(font9);
         bt_test2 = new QPushButton(centralWidget);
         bt_test2->setObjectName(QStringLiteral("bt_test2"));
         bt_test2->setGeometry(QRect(550, 0, 41, 25));
+        bt_test2->setFont(font9);
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(598, 0, 41, 25));
@@ -706,6 +731,7 @@ public:
         menuFile->addAction(actionSelect_img_folder);
         menuPointcloud->addAction(actionSet_points_origin_whole_folder);
         menuPointcloud->addAction(actionVoxel_grid_all);
+        menuPointcloud->addAction(actionShow_xyz_axis);
         menuHistogramImg->addAction(actionCalc_Hist_xyz_all);
 
         retranslateUi(MainWindow);
@@ -724,6 +750,7 @@ public:
         actionSet_points_origin_whole_folder->setText(QApplication::translate("MainWindow", "Set points origin whole folder", Q_NULLPTR));
         actionCalc_Hist_xyz_all->setText(QApplication::translate("MainWindow", "Calc Hist xyz variation all", Q_NULLPTR));
         actionVoxel_grid_all->setText(QApplication::translate("MainWindow", "Voxel grid all", Q_NULLPTR));
+        actionShow_xyz_axis->setText(QApplication::translate("MainWindow", "Show xyz axis", Q_NULLPTR));
         bt_openplyfolder->setText(QApplication::translate("MainWindow", "Open this folder", Q_NULLPTR));
         QTreeWidgetItem *___qtreewidgetitem = plyfiles_treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Filename", Q_NULLPTR));
@@ -828,6 +855,10 @@ public:
         bt_reload->setText(QApplication::translate("MainWindow", "Reload", Q_NULLPTR));
         radioButton_bg_black->setText(QApplication::translate("MainWindow", "bg black", Q_NULLPTR));
         radioButton_bg_white->setText(QApplication::translate("MainWindow", "bg white", Q_NULLPTR));
+        line_windowsize_w->setText(QApplication::translate("MainWindow", "500", Q_NULLPTR));
+        line_windowsize_h->setText(QApplication::translate("MainWindow", "500", Q_NULLPTR));
+        bt_apply_windowsize->setText(QApplication::translate("MainWindow", "Apply", Q_NULLPTR));
+        label_windowsize->setText(QApplication::translate("MainWindow", "Window size (w*h)", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_pointcloud), QApplication::translate("MainWindow", "Pointcloud", Q_NULLPTR));
         bt_planeseg_2->setText(QApplication::translate("MainWindow", "PlaneSeg2", Q_NULLPTR));
         label_planecoef_in->setText(QApplication::translate("MainWindow", "plan coef", Q_NULLPTR));
@@ -842,8 +873,8 @@ public:
         line_planecoef_c->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         bt_planestimate->setText(QApplication::translate("MainWindow", "Plane Estimation", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "PlaneSeg", Q_NULLPTR));
-        bt_test1->setText(QApplication::translate("MainWindow", "Test 1", Q_NULLPTR));
-        bt_test2->setText(QApplication::translate("MainWindow", "Test 2", Q_NULLPTR));
+        bt_test1->setText(QApplication::translate("MainWindow", "align+rotgu", Q_NULLPTR));
+        bt_test2->setText(QApplication::translate("MainWindow", "rotguide", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("MainWindow", "Test 3", Q_NULLPTR));
         line_test1->setText(QApplication::translate("MainWindow", "0.01", Q_NULLPTR));
         label_press_o->setText(QApplication::translate("MainWindow", "press 'o' to swap pers/ortho", Q_NULLPTR));

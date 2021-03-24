@@ -57,9 +57,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>90</y>
+        <y>130</y>
         <width>191</width>
-        <height>341</height>
+        <height>301</height>
        </rect>
       </property>
       <property name="verticalScrollBarPolicy">
@@ -1811,6 +1811,58 @@
        <string>bg white</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="line_windowsize_w">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>500</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line_windowsize_h">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>100</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>500</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_apply_windowsize">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>100</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Apply</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_windowsize">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>131</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Window size (w*h)</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1983,8 +2035,13 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>5</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>Test 1</string>
+     <string>align+rotgu</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_test2">
@@ -1996,8 +2053,13 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>5</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>Test 2</string>
+     <string>rotguide</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
@@ -2076,6 +2138,7 @@
     </property>
     <addaction name="actionSet_points_origin_whole_folder"/>
     <addaction name="actionVoxel_grid_all"/>
+    <addaction name="actionShow_xyz_axis"/>
    </widget>
    <widget class="QMenu" name="menuHistogramImg">
     <property name="title">
@@ -2131,6 +2194,17 @@
   <action name="actionVoxel_grid_all">
    <property name="text">
     <string>Voxel grid all</string>
+   </property>
+  </action>
+  <action name="actionShow_xyz_axis">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show xyz axis</string>
    </property>
   </action>
  </widget>

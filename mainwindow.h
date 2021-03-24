@@ -71,6 +71,7 @@ private:
     void PrintPoints(PointCloudXYZRGB::Ptr cloud);
 */
     void ListPlyInFolder();
+    void show_rotation_guide_360();
 
 
 private slots:
@@ -142,6 +143,8 @@ private slots:
     void on_actionVoxel_grid_all_triggered();
     void on_radioButton_bg_black_clicked();
     void on_radioButton_bg_white_clicked();
+    void on_bt_apply_windowsize_clicked();
+    void on_actionShow_xyz_axis_triggered();
 };
 
 #endif // MAINWINDOW_H

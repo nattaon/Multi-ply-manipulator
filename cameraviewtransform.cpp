@@ -7,6 +7,8 @@ CameraviewTransform::CameraviewTransform()
     viewer_input.reset(new pcl::visualization::PCLVisualizer("pointcloud input"));
     camera = viewer_input->getRenderWindow()->GetRenderers()->GetFirstRenderer()->GetActiveCamera();
 
+    window_w =500;
+    window_h = 500;
     Resetview();
     //viewer_input->setPosition(800,0);//window position
 
@@ -17,6 +19,22 @@ CameraviewTransform::CameraviewTransform()
     time.start();
 
 }
+
+void CameraviewTransform::AddCoordinateSystem()
+{
+    viewer_input->addCoordinateSystem(3.0);
+}
+void CameraviewTransform::RemoveCoordinateSystem()
+{
+    viewer_input->removeCoordinateSystem();
+}
+void CameraviewTransform::SetWindowViewSize(int w, int h)
+{
+    window_w = w;
+    window_h = h;
+    viewer_input->setSize(window_w, window_h);
+}
+
 void CameraviewTransform::SetBGColorWhite()
 {
     viewer_input->setBackgroundColor (1, 1, 1);
@@ -24,7 +42,7 @@ void CameraviewTransform::SetBGColorWhite()
 }
 void CameraviewTransform::SetBGColorBlack()
 {
-    viewer_input->setBackgroundColor (0, 0,0);
+    viewer_input->setBackgroundColor (0, 0, 0);
     isbgblack = true;
 }
 void CameraviewTransform::Resetview()
@@ -34,7 +52,7 @@ void CameraviewTransform::Resetview()
     if(isbgblack) SetBGColorBlack();
     else SetBGColorWhite();
 
-    viewer_input->setSize(500, 500);
+    viewer_input->setSize(window_w, window_h);
     viewer_input->setPosition(800,0);//window position
 
     //camera->SetParallelProjection(1);

@@ -1,0 +1,11 @@
+multi-ply-manipulator
+usage guide
+1.voxel grid size = 0.02,
+to filter every pointcloud to have a similar density.
+2. rotate the pointcloud so that its height direction follows y axis(green).
+3. rotate the room pointclound on xz axis, make it orgothonally.
+(show rotation guide, to easy determine rotation number.)
+4. get boundary -> show bounding (red), to check outlier points
+5. adjust boundary range -> show bounding -> crop, 
+to remove the outlier.
+6. save ply

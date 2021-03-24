@@ -34,6 +34,9 @@ public:
     void timerEvent(QTimerEvent *event);
     void mouse_callback_viewer_input( const pcl::visualization::MouseEvent& event, void* );
 
+    void AddCoordinateSystem();
+    void RemoveCoordinateSystem();
+    void SetWindowViewSize(int w, int h);
     void SetBGColorWhite();
     void SetBGColorBlack();
     void Resetview();
@@ -64,6 +67,8 @@ private:
     QTime time;
     int timerId;
     bool isbgblack=true;
+    int window_w;
+    int window_h;
 
 
 };
